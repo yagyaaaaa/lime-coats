@@ -13,83 +13,185 @@
             --off-white: #F5F5F0;
             --pure-white: #FFFFFF;
         }
-        /* The Background Image Logic */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 1. Background Logic with lakemon.jpg */
+        
+        body {
+            background-color: var(--primary-blue);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        /* The Background Image Overlay */
         
         body::before {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            /* Replace 'background.jpg' with your actual filename */
-            background: url('background.jpg') no-repeat center center/cover;
-            opacity: 0.3;
-            /* Adjust this for medium-low opacity */
+            width: 100vw;
+            height: 100vh;
+            background: url('lakemon.jpg') no-repeat center center/cover;
+            opacity: 0.25;
+            /* Medium-low opacity so text pops */
             z-index: -1;
-            background-color: var(--primary-blue);
         }
-        
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--off-white);
-            min-height: 100vh;
-        }
+        /* 2. Hero Section: Asymmetrical Layout */
         
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            /* Vertical center */
             justify-content: center;
-            /* Horizontal center */
-            padding: 0 10%;
-            gap: 50px;
+            gap: 60px;
             /* Space between logo and text */
+            padding: 20px 5%;
         }
         
         .logo {
-            width: 250px;
-            /* Slightly bigger since it's on the side */
+            width: 300px;
+            /* Sized for desktop side-by-side */
+            max-width: 40vw;
             height: auto;
-            flex-shrink: 0;
+            animation: fadeIn 2s ease-in;
         }
         
         .hero-text {
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 1.5s ease-out;
         }
         
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            margin: 0;
-            line-height: 1.1;
+            font-size: clamp(3rem, 7vw, 6rem);
             color: var(--pure-white);
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         
         .slogan {
-            font-size: 1.5rem;
             color: var(--accent-green);
-            margin-top: 10px;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-style: italic;
+            letter-spacing: 2px;
         }
-        /* Responsive: Stack them back on top for mobile */
+        /* 3. Information Section */
         
-        @media (max-width: 768px) {
+        .info-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+        
+        .info-card {
+            /* Dark semi-transparent box to make text readable over the background image */
+            background: rgba(10, 25, 47, 0.85);
+            border-left: 3px solid var(--accent-green);
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            /* Modern frosted glass effect */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--pure-white);
+            margin-bottom: 25px;
+        }
+        
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        /* 4. Footer Section */
+        
+        footer {
+            background: rgba(8, 18, 33, 0.95);
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(128, 128, 0, 0.4);
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-info span {
+            display: block;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            margin: 8px 0;
+            letter-spacing: 1px;
+        }
+        
+        .trademark {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* 5. Mobile Adjustments */
+        
+        @media (max-width: 900px) {
             .hero {
                 flex-direction: column;
+                /* Stacks logo above text on small screens */
                 text-align: center;
-                padding-top: 50px;
-            }
-            .hero-text {
-                text-align: center;
+                gap: 30px;
+                padding-top: 10vh;
             }
             .logo {
-                width: 150px;
+                width: 200px;
+            }
+            .info-card {
+                padding: 30px;
+            }
+            h2 {
+                font-size: 2rem;
             }
         }
     </style>
+</head>
+
+<body>
 
     <section class="hero">
         <img src="lclogo.jfif" alt="Limecoats Logo" class="logo">
@@ -97,16 +199,6 @@
             <h1>Coming Soon</h1>
             <p class="slogan">To breathe life into your walls</p>
         </div>
-    </section>
-</head>
-
-<body>
-
-    <section class="hero">
-        <img src="lclogo.jfif" alt="Limecoats Logo" class="logo">
-
-        <h1>Coming Soon</h1>
-        <p class="slogan">To breathe life into your walls</p>
     </section>
 
     <section class="info-section">
@@ -124,8 +216,8 @@
 
     <footer>
         <div class="contact-info">
-            <span>Inquiries: LIMECOATS@GMAIL.COM</span>
-            <span>Connect: +91 84335 52656</span>
+            <span>INQUIRIES: ROARINGKILLINLION@GMAIL.COM</span>
+            <span>CONNECT: +91 84335 52656</span>
         </div>
         <div class="trademark">
             &copy; 2026 LIME COATS. LUXURY LIME FINISHES. ALL RIGHTS RESERVED. ™
