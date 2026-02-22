@@ -1,404 +1,201 @@
-<<<<<<< HEAD <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Limecoats | Luxury Lime Finishes</title>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-        <style>
-             :root {
-                --primary-blue: #0A192F;
-                /* Deep Luxury Blue */
-                --accent-green: #808000;
-                /* Olive/Ochre from Logo */
-                --off-white: #F5F5F0;
-                /* Classic Off-White */
-                --pure-white: #FFFFFF;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limecoats | Luxury Lime Finishes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary-blue: #0A192F;
+            /* Deep Luxury Blue */
+            --accent-green: #808000;
+            /* Olive/Ochre from Logo */
+            --off-white: #F5F5F0;
+            /* Classic Off-White */
+            --pure-white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--primary-blue);
+            color: var(--off-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        /* Hero Section */
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: radial-gradient(circle at center, #112240 0%, #0A192F 100%);
+        }
+        
+        .logo {
+            width: 180px;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 400;
+            color: var(--pure-white);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            animation: slideUp 1.5s ease-out;
+        }
+        
+        .slogan {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--accent-green);
+            letter-spacing: 3px;
+            text-transform: lowercase;
+            font-style: italic;
+            margin-bottom: 50px;
+            animation: slideUp 2s ease-out;
+        }
+        /* Scroll Information Section */
+        
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .info-card {
+            border-left: 2px solid var(--accent-green);
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--pure-white);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            color: var(--off-white);
+            opacity: 0.9;
+        }
+        /* Footer Slot */
+        
+        footer {
+            padding: 60px 20px;
+            border-top: 1px solid rgba(128, 128, 0, 0.3);
+            text-align: center;
+            background-color: #081221;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info span {
+            display: block;
+            margin: 5px 0;
+            color: var(--accent-green);
+        }
+        
+        .trademark {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-            
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+            to {
+                opacity: 1;
             }
-            
-            body {
-                background-color: var(--primary-blue);
-                color: var(--off-white);
-                font-family: 'Montserrat', sans-serif;
-                overflow-x: hidden;
-                line-height: 1.6;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            /* Hero Section */
-            
-            .hero {
-                height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                padding: 20px;
-                background: radial-gradient(circle at center, #112240 0%, #0A192F 100%);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            
-            .logo {
-                width: 180px;
-                margin-bottom: 40px;
-                animation: fadeIn 2s ease-in;
-            }
-            
-            h1 {
-                font-family: 'Playfair Display', serif;
-                font-size: clamp(3rem, 10vw, 6rem);
-                font-weight: 400;
-                color: var(--pure-white);
-                letter-spacing: 4px;
-                margin-bottom: 10px;
-                text-transform: uppercase;
-                animation: slideUp 1.5s ease-out;
-            }
-            
-            .slogan {
-                font-size: clamp(1rem, 3vw, 1.5rem);
-                color: var(--accent-green);
-                letter-spacing: 3px;
-                text-transform: lowercase;
-                font-style: italic;
-                margin-bottom: 50px;
-                animation: slideUp 2s ease-out;
-            }
-            /* Scroll Information Section */
-            
+        }
+        /* Mobile Adjustments */
+        
+        @media (max-width: 768px) {
             .info-section {
-                max-width: 900px;
-                margin: 0 auto;
-                padding: 100px 20px;
-                text-align: center;
-            }
-            
-            .info-card {
-                border-left: 2px solid var(--accent-green);
-                padding: 40px;
-                background: rgba(255, 255, 255, 0.02);
-                transition: transform 0.3s ease;
-            }
-            
-            .info-card:hover {
-                transform: translateY(-10px);
-                background: rgba(255, 255, 255, 0.04);
-            }
-            
-            h2 {
-                font-family: 'Playfair Display', serif;
-                font-size: 2rem;
-                margin-bottom: 30px;
-                color: var(--pure-white);
-            }
-            
-            p {
-                font-size: 1.1rem;
-                font-weight: 300;
-                margin-bottom: 25px;
-                color: var(--off-white);
-                opacity: 0.9;
-            }
-            /* Footer Slot */
-            
-            footer {
                 padding: 60px 20px;
-                border-top: 1px solid rgba(128, 128, 0, 0.3);
-                text-align: center;
-                background-color: #081221;
             }
-            
-            .contact-info {
-                margin-bottom: 20px;
-                font-size: 0.9rem;
-                letter-spacing: 1px;
-            }
-            
-            .contact-info span {
-                display: block;
-                margin: 5px 0;
-                color: var(--accent-green);
-            }
-            
-            .trademark {
-                font-size: 0.7rem;
-                opacity: 0.5;
-                text-transform: uppercase;
-            }
-            /* Animations */
-            
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            /* Mobile Adjustments */
-            
-            @media (max-width: 768px) {
-                .info-section {
-                    padding: 60px 20px;
-                }
-                .info-card {
-                    padding: 25px;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-
-        <section class="hero">
-            <img src="lcgo.jpg" alt="Limecoats Logo" class="logo">
-
-            <h1>Coming Soon</h1>
-            <p class="slogan">To breathe life into your walls</p>
-        </section>
-
-        <section class="info-section">
-            <div class="info-card">
-                <h2>The Art of Breathable Surfaces</h2>
-                <p>
-                    Rooted in sustainability and timeless craftsmanship, Limecoats specializes in eco-friendly, mineral-based finishes that are breathable, toxin-free, zero VOC, and environmentally responsible. Our handcrafted surfaces not only enhance aesthetic elegance
-                    but also improve indoor air quality and long-term durability.
-                </p>
-                <p>
-                    From Venetian plaster and Terrazzo to textured lime finishes and bespoke artisanal surfaces, every Limecoats wall is designed to age beautifully — blending luxury with nature.
-                </p>
-            </div>
-        </section>
-
-        <footer>
-            <div class="contact-info">
-                <span>Inquiries: LIMECOATS.COM</span>
-                <span>Connect: +91 84335 52656</span>
-            </div>
-            <div class="trademark">
-                &copy; 2026 LIME COATS. LUXURY LIME FINISHES. ALL RIGHTS RESERVED. ™
-            </div>
-        </footer>
-
-    </body>
-
-    </html>
-    =======
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Limecoats | Luxury Lime Finishes</title>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-        <style>
-             :root {
-                --primary-blue: #0A192F;
-                /* Deep Luxury Blue */
-                --accent-green: #808000;
-                /* Olive/Ochre from Logo */
-                --off-white: #F5F5F0;
-                /* Classic Off-White */
-                --pure-white: #FFFFFF;
-            }
-            
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            
-            body {
-                background-color: var(--primary-blue);
-                color: var(--off-white);
-                font-family: 'Montserrat', sans-serif;
-                overflow-x: hidden;
-                line-height: 1.6;
-            }
-            /* Hero Section */
-            
-            .hero {
-                height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                padding: 20px;
-                background: radial-gradient(circle at center, #112240 0%, #0A192F 100%);
-            }
-            
-            .logo {
-                width: 180px;
-                margin-bottom: 40px;
-                animation: fadeIn 2s ease-in;
-            }
-            
-            h1 {
-                font-family: 'Playfair Display', serif;
-                font-size: clamp(3rem, 10vw, 6rem);
-                font-weight: 400;
-                color: var(--pure-white);
-                letter-spacing: 4px;
-                margin-bottom: 10px;
-                text-transform: uppercase;
-                animation: slideUp 1.5s ease-out;
-            }
-            
-            .slogan {
-                font-size: clamp(1rem, 3vw, 1.5rem);
-                color: var(--accent-green);
-                letter-spacing: 3px;
-                text-transform: lowercase;
-                font-style: italic;
-                margin-bottom: 50px;
-                animation: slideUp 2s ease-out;
-            }
-            /* Scroll Information Section */
-            
-            .info-section {
-                max-width: 900px;
-                margin: 0 auto;
-                padding: 100px 20px;
-                text-align: center;
-            }
-            
             .info-card {
-                border-left: 2px solid var(--accent-green);
-                padding: 40px;
-                background: rgba(255, 255, 255, 0.02);
-                transition: transform 0.3s ease;
+                padding: 25px;
             }
-            
-            .info-card:hover {
-                transform: translateY(-10px);
-                background: rgba(255, 255, 255, 0.04);
-            }
-            
-            h2 {
-                font-family: 'Playfair Display', serif;
-                font-size: 2rem;
-                margin-bottom: 30px;
-                color: var(--pure-white);
-            }
-            
-            p {
-                font-size: 1.1rem;
-                font-weight: 300;
-                margin-bottom: 25px;
-                color: var(--off-white);
-                opacity: 0.9;
-            }
-            /* Footer Slot */
-            
-            footer {
-                padding: 60px 20px;
-                border-top: 1px solid rgba(128, 128, 0, 0.3);
-                text-align: center;
-                background-color: #081221;
-            }
-            
-            .contact-info {
-                margin-bottom: 20px;
-                font-size: 0.9rem;
-                letter-spacing: 1px;
-            }
-            
-            .contact-info span {
-                display: block;
-                margin: 5px 0;
-                color: var(--accent-green);
-            }
-            
-            .trademark {
-                font-size: 0.7rem;
-                opacity: 0.5;
-                text-transform: uppercase;
-            }
-            /* Animations */
-            
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            /* Mobile Adjustments */
-            
-            @media (max-width: 768px) {
-                .info-section {
-                    padding: 60px 20px;
-                }
-                .info-card {
-                    padding: 25px;
-                }
-            }
-        </style>
-    </head>
+        }
+    </style>
+</head>
 
-    <body>
+<body>
 
-        <section class="hero">
-            <img src="lclogo.jfif" alt="Limecoats Logo" class="logo">
+    <section class="hero">
+        <img src="lclogo.jfif" alt="Limecoats Logo" class="logo">
 
-            <h1>Coming Soon</h1>
-            <p class="slogan">To breathe life into your walls</p>
-        </section>
+        <h1>Coming Soon</h1>
+        <p class="slogan">To breathe life into your walls</p>
+    </section>
 
-        <section class="info-section">
-            <div class="info-card">
-                <h2>The Art of Breathable Surfaces</h2>
-                <p>
-                    Rooted in sustainability and timeless craftsmanship, Limecoats specializes in eco-friendly, mineral-based finishes that are breathable, toxin-free, zero VOC, and environmentally responsible. Our handcrafted surfaces not only enhance aesthetic elegance
-                    but also improve indoor air quality and long-term durability.
-                </p>
-                <p>
-                    From Venetian plaster and Terrazzo to textured lime finishes and bespoke artisanal surfaces, every Limecoats wall is designed to age beautifully — blending luxury with nature.
-                </p>
-            </div>
-        </section>
+    <section class="info-section">
+        <div class="info-card">
+            <h2>The Art of Breathable Surfaces</h2>
+            <p>
+                Rooted in sustainability and timeless craftsmanship, Limecoats specializes in eco-friendly, mineral-based finishes that are breathable, toxin-free, zero VOC, and environmentally responsible. Our handcrafted surfaces not only enhance aesthetic elegance
+                but also improve indoor air quality and long-term durability.
+            </p>
+            <p>
+                From Venetian plaster and Terrazzo to textured lime finishes and bespoke artisanal surfaces, every Limecoats wall is designed to age beautifully — blending luxury with nature.
+            </p>
+        </div>
+    </section>
 
-        <footer>
-            <div class="contact-info">
-                <span>Inquiries: EMAIL@LIMECOATS.COM</span>
-                <span>Connect: +91 00000 00000</span>
-            </div>
-            <div class="trademark">
-                &copy; 2026 LIME COATS. LUXURY LIME FINISHES. ALL RIGHTS RESERVED. ™
-            </div>
-        </footer>
+    <footer>
+        <div class="contact-info">
+            <span>Inquiries: LIMECOATS@GMAIL.COM</span>
+            <span>Connect: +91 84335 52656</span>
+        </div>
+        <div class="trademark">
+            &copy; 2026 LIME COATS. LUXURY LIME FINISHES. ALL RIGHTS RESERVED. ™
+        </div>
+    </footer>
 
-    </body>
+</body>
 
-    </html>
-    >>>>>>> b514f2e35191e7f6463ea25384f741c04ed2b8e1
+</html>
