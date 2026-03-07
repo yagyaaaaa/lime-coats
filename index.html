@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limecoats | Luxury Lime Finishes</title>
+    <title>Limecoats | Ecological Lime Finishes</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
          :root {
-            --primary-blue: #0A192F;
+            /* YOU MUST CHANGE THIS TO MATCH YOUR LOGO'S EXACT BACKGROUND COLOR */
+            --header-blue: #05101f;
+            /* The separate shade of blue for the body */
+            --body-blue: #0A192F;
             --accent-green: #808000;
-            --off-white: #F5F5F0;
             --pure-white: #FFFFFF;
         }
         
@@ -21,199 +23,154 @@
         }
         
         body {
-            background-color: var(--primary-blue);
+            background-color: var(--body-blue);
             font-family: 'Montserrat', sans-serif;
-            color: var(--off-white);
+            color: var(--pure-white);
             overflow-x: hidden;
-            line-height: 1.7;
+            /* Extra height added just so you can actually scroll and test the logo spin */
+            min-height: 200vh;
         }
-        /* The Background Texture Overlay */
+        /* 1. THE HEADER */
         
-        body::before {
-            content: "";
+        header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            /* Pointing to your existing lakemon.jpg */
-            background: url('lakemon.jpg') no-repeat center center/cover;
-            opacity: 0.25;
-            z-index: -1;
-        }
-        /* HERO SECTION */
-        
-        .hero {
-            min-height: 100vh;
+            width: 100%;
+            height: 80px;
+            background-color: var(--header-blue);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            gap: 60px;
-            padding: 20px 5%;
+            padding: 0 5%;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
         
-        .logo {
-            width: 300px;
-            max-width: 40vw;
-            height: auto;
-            animation: fadeIn 2s ease-in;
-            transition: transform 0.4s ease, filter 0.4s ease;
-            /* THE BLEND MODE BANDAGE: This removes white backgrounds. 
-               If your logo has a black background, change 'multiply' to 'screen' */
-            mix-blend-mode: multiply;
-        }
-        /* Hover Effect: Logo */
-        
-        .logo:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.5));
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            /* Slight rounding so the square isn't harsh */
+            will-change: transform;
+            /* Performance boost for the spin */
         }
         
-        .hero-text {
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        /* The 3-Line Hamburger Menu */
+        
+        .menu-slider-btn {
             display: flex;
             flex-direction: column;
-            animation: slideUp 1.5s ease-out;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
         }
         
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 7vw, 6rem);
-            color: var(--pure-white);
-            line-height: 1.1;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            transition: text-shadow 0.4s ease;
-        }
-        /* Hover Effect: Title */
-        
-        h1:hover {
-            text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        .menu-slider-btn div {
+            width: 30px;
+            height: 2px;
+            background-color: var(--pure-white);
+            transition: 0.3s;
         }
         
-        .slogan {
-            color: var(--accent-green);
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-style: italic;
-            letter-spacing: 2px;
+        .menu-slider-btn:hover div {
+            background-color: var(--accent-green);
         }
-        /* INFO SECTION */
+        /* 2. THE BOOT ANIMATION (LAKE DROP) */
         
-        .info-section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 100px 20px;
+        .hero-lake {
+            margin-top: 80px;
+            /* Push below header */
+            width: 100%;
+            height: 55vh;
+            background: url('lakemon.jpg') no-repeat center center/cover;
+            position: relative;
+            /* The Drop Animation */
+            transform: translateY(-100%);
+            opacity: 0;
+            animation: dropLake 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
+        /* Dark overlay so the lake doesn't blind the user */
         
-        .info-card {
-            background: rgba(10, 25, 47, 0.85);
-            border-left: 3px solid var(--accent-green);
-            padding: 50px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            /* Smooth transition for the hover effect */
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: default;
-        }
-        /* Hover Effect: Glass Card */
-        
-        .info-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-            border-left-color: var(--pure-white);
+        .hero-lake::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.4);
         }
         
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--pure-white);
-            margin-bottom: 25px;
-        }
-        
-        p {
-            font-size: 1.15rem;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-        /* FOOTER */
-        
-        footer {
-            background: rgba(8, 18, 33, 0.95);
-            text-align: center;
-            padding: 50px 20px;
-            border-top: 1px solid rgba(128, 128, 0, 0.4);
-        }
-        
-        .contact-info {
-            margin-bottom: 20px;
-        }
-        
-        .contact-info span {
-            display: inline-block;
-            color: var(--accent-green);
-            font-size: 1.1rem;
-            margin: 8px 15px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            cursor: crosshair;
-            /* Adds a high-end target cursor */
-        }
-        /* Hover Effect: Contact Links */
-        
-        .contact-info span:hover {
-            color: var(--pure-white);
-            transform: translateY(-3px);
-            text-shadow: 0px 0px 10px var(--accent-green);
-        }
-        
-        .trademark {
-            font-size: 0.75rem;
-            opacity: 0.5;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 20px;
-        }
-        /* Animations */
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
+        @keyframes dropLake {
             to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
                 transform: translateY(0);
+                opacity: 1;
             }
         }
-        /* Mobile Adjustments */
+        /* 3. THE SLIDER CARDS (ECOLOGICAL BENEFITS) */
         
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-                padding-top: 10vh;
-            }
-            .logo {
-                width: 200px;
-            }
-            .info-card {
-                padding: 30px;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .contact-info span {
-                display: block;
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 60px 5%;
+            flex-wrap: wrap;
+        }
+        
+        .eco-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 3px solid var(--accent-green);
+            padding: 40px;
+            width: 45%;
+            min-width: 300px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            /* Hidden until animation fires */
+            opacity: 0;
+        }
+        
+        .eco-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .eco-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .eco-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        /* Sequenced Slide Animations */
+        
+        .slide-from-left {
+            transform: translateX(-100px);
+            /* Delays 0.8s so the lake drops first */
+            animation: slideIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s forwards;
+        }
+        
+        .slide-from-right {
+            transform: translateX(100px);
+            /* Delays 1.1s so it follows the left card */
+            animation: slideIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.1s forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
     </style>
@@ -221,35 +178,43 @@
 
 <body>
 
-    <section class="hero">
-        <img src="lclogo.png" alt="Limecoats Logo" class="logo">
-        <div class="hero-text">
-            <h1>Coming Soon</h1>
-            <p class="slogan">To breathe life into your walls</p>
+    <header>
+        <img src="lc-cr.png" alt="Logo" class="header-logo" id="scroll-logo">
+        <div class="header-title">Limecoats</div>
+        <div class="menu-slider-btn">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-    </section>
+    </header>
 
-    <section class="info-section">
-        <div class="info-card">
-            <h2>The Art of Breathable Surfaces</h2>
-            <p>
-                Rooted in sustainability and timeless craftsmanship, Limecoats specializes in eco-friendly, mineral-based finishes that are breathable, toxin-free, zero VOC, and environmentally responsible.
-            </p>
-            <p>
-                From Venetian plaster and Terrazzo to textured lime finishes and bespoke artisanal surfaces, every Limecoats wall is designed to age beautifully — blending luxury with nature.
-            </p>
-        </div>
-    </section>
+    <div class="hero-lake"></div>
 
-    <footer>
-        <div class="contact-info">
-            <span>INQUIRIES: ROARINGKILLINLION@GMAIL.COM</span>
-            <span>CONNECT: +91 84335 52656</span>
+    <div class="cards-container">
+        <div class="eco-card slide-from-left">
+            <h3>Zero VOCs. Pure Air.</h3>
+            <p>Our finishes are formulated without synthetic toxins, absorbing carbon dioxide from your environment as they cure.</p>
         </div>
-        <div class="trademark">
-            &copy; 2026 LIME COATS. LUXURY LIME FINISHES. ALL RIGHTS RESERVED. ™
+        <div class="eco-card slide-from-right">
+            <h3>Living Mineral Textures</h3>
+            <p>Naturally breathable surfaces that prevent mold and humidity buildup, sourced directly from the earth to your walls.</p>
         </div>
-    </footer>
+    </div>
+
+    <script>
+        const logo = document.getElementById('scroll-logo');
+
+        document.addEventListener('scroll', () => {
+            // Calculate how far down the page the user has scrolled (0.0 to 1.0)
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+
+            // 4 full rotations = 360 * 4 = 1440 degrees. 
+            const degreesToSpin = scrollPercent * 1440;
+
+            // Apply the rotation
+            logo.style.transform = `rotate(${degreesToSpin}deg)`;
+        });
+    </script>
 
 </body>
 
