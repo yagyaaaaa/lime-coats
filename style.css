@@ -12,18 +12,41 @@
 }
 
 body {
-    /* We make the body 250vh tall. This creates an invisible scrollbar.
-      The user thinks they are scrolling down a page, but they are actually 
-      just controlling our animation timeline.
-    */
-    height: 250vh;
-    background-color: #f8f8f8;
+    height: 300vh;
+    /* Creates the invisible scroll track */
+    background-color: #f1f1f1;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
 }
 
 
-/* LAYER 1: The Finished Luxury Wall (Locked in the background) */
+/* LAYER 1: The Static White Wall (Always in back) */
+
+.white-wall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #f1f1f1;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.scroll-indicator {
+    color: #888;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+    animation: bounce 2s infinite;
+}
+
+
+/* LAYER 2: The Static Blue Wall (Revealed dynamically) */
 
 .painted-wall {
     position: fixed;
@@ -32,14 +55,17 @@ body {
     width: 100%;
     height: 100vh;
     background: url('blue-texture.png') no-repeat center center/cover;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    /* THIS IS THE MAGIC: Hides the blue wall from the bottom up */
+    clip-path: inset(0 0 100% 0);
+    will-change: clip-path;
 }
 
 
-/* The Glass Box that holds your text */
+/* The Glass Box */
 
 .content-wrapper {
     text-align: center;
@@ -49,7 +75,6 @@ body {
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    /* Hidden initially, revealed by the roller */
 }
 
 .brand-logo {
@@ -83,44 +108,19 @@ h1 {
 }
 
 
-/* LAYER 2: The White Canvas & Roller (Sits on top) */
-
-.curtain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120vh;
-    z-index: 10;
-    will-change: transform;
-    /* Performance boost for smooth scrolling */
-}
+/* LAYER 3: The Independent Roller */
 
 .roller-img {
+    position: fixed;
+    /* Adjust this -15vh if your roller sits too high or low relative to the paint line */
+    top: -15vh;
+    left: 0;
     width: 100%;
     height: auto;
-    display: block;
-    object-fit: cover;
-}
-
-.white-canvas {
-    width: 100%;
-    height: 100vh;
-    background-color: #f1f1f1;
-    /* Matches the white wall under the roller */
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 80px;
-}
-
-.scroll-indicator {
-    color: #555;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    font-weight: 600;
-    animation: bounce 2s infinite;
+    z-index: 3;
+    will-change: transform;
+    pointer-events: none;
+    /* Stops the image from blocking clicks on your email */
 }
 
 @keyframes bounce {

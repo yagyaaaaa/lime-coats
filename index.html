@@ -11,7 +11,11 @@
 
 <body>
 
-    <div class="painted-wall">
+    <div class="white-wall">
+        <div class="scroll-indicator">Scroll down to paint</div>
+    </div>
+
+    <div class="painted-wall" id="painted-wall">
         <div class="content-wrapper">
             <img src="lclogo.png" alt="Limecoats Logo" class="brand-logo">
             <h1>Luxury Lime Finish</h1>
@@ -23,12 +27,7 @@
         </div>
     </div>
 
-    <div class="curtain" id="paint-curtain">
-        <img src="roller.png" alt="Paint Roller" class="roller-img">
-        <div class="white-canvas">
-            <div class="scroll-indicator">Scroll down to paint</div>
-        </div>
-    </div>
+    <img src="roller.png" alt="Paint Roller" class="roller-img" id="roller">
 
     <script>
         document.addEventListener('scroll', () => {
@@ -36,11 +35,17 @@
             const maxScroll = document.body.scrollHeight - window.innerHeight;
 
             // Calculate percentage scrolled (0 to 1)
-            const scrollPercent = scrolled / maxScroll;
+            let scrollPercent = scrolled / maxScroll;
+            if (scrollPercent > 1) scrollPercent = 1;
+            if (scrollPercent < 0) scrollPercent = 0;
 
-            // Push the curtain (and roller) down off the screen
-            const curtain = document.getElementById('paint-curtain');
-            curtain.style.transform = `translateY(${scrollPercent * 110}vh)`;
+            // 1. Unhide the blue wall from top to bottom
+            const paintedWall = document.getElementById('painted-wall');
+            paintedWall.style.clipPath = `inset(0 0 ${100 - (scrollPercent * 100)}% 0)`;
+
+            // 2. Move the roller down the screen
+            const roller = document.getElementById('roller');
+            roller.style.transform = `translateY(${scrollPercent * 100}vh)`;
         });
     </script>
 
