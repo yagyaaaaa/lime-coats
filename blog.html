@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — LimeCoats</title>
+<meta name="description" content="Insights, trends, and stories from the world of lime plastering and luxury wall finishes by LimeCoats.">
+<link rel="icon" type="image/png" href="lc-cr.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0A192F;
+  --navy-light:#112240;
+  --cyan:#64FFDA;
+  --off-white:#F5F5F0;
+  --glass:rgba(17,34,64,.55);
+  --glass-border:rgba(100,255,218,.12);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--navy);
+  color:var(--off-white);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600}
+
+/* ─── HEADER ─── */
+header{
+  position:sticky;top:0;width:100%;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:rgba(10,25,47,.85);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--glass-border);
+}
+header .logo-icon{width:34px;height:34px}
+header .brand-title{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font-family:'Playfair Display',serif;font-size:1.1rem;letter-spacing:.18em;
+  color:var(--off-white);text-decoration:none;
+}
+header .back-btn{
+  font-size:.88rem;color:var(--cyan);text-decoration:none;
+  letter-spacing:.06em;
+}
+header .back-btn:hover{text-decoration:underline}
+
+/* ─── BLOG CONTENT ─── */
+.blog-hero{
+  text-align:center;
+  padding:80px 24px 60px;
+}
+.blog-hero h1{
+  font-size:clamp(2rem,4vw,3.2rem);
+  margin-bottom:10px;
+}
+.blog-hero .subtitle{
+  font-size:clamp(.88rem,1.5vw,1.1rem);
+  letter-spacing:.18em;
+  color:var(--cyan);
+}
+
+.blog-grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:28px;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 24px 80px;
+}
+.blog-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:36px 28px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.blog-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(100,255,218,.08);
+}
+.blog-card .blog-date{
+  font-size:.75rem;
+  letter-spacing:.14em;
+  color:var(--cyan);
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.blog-card h2{
+  font-size:1.2rem;
+  margin-bottom:14px;
+  color:var(--off-white);
+  line-height:1.4;
+}
+.blog-card p{
+  font-size:.9rem;
+  line-height:1.75;
+  color:rgba(245,245,240,.65);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  border-top:1px solid var(--glass-border);
+  padding:40px 24px 24px;
+  text-align:center;
+}
+footer img{width:40px;margin-bottom:10px;opacity:.6}
+footer .copyright{
+  font-size:.75rem;color:rgba(245,245,240,.3);letter-spacing:.06em;
+}
+@media(max-width:768px){
+  header{padding:12px 16px}
+  header .brand-title{font-size:.95rem;letter-spacing:.12em}
+  .blog-grid{grid-template-columns:1fr;padding:0 18px 50px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← Home</a>
+  <a href="index.html" class="brand-title">LIMECOATS</a>
+  <img src="lc-cr.png" alt="LimeCoats" class="logo-icon">
+</header>
+
+<div class="blog-hero">
+  <h1>Blog</h1>
+  <p class="subtitle">Stories, Insights &amp; Inspiration</p>
+</div>
+
+<section class="blog-grid">
+
+  <article class="blog-card">
+    <p class="blog-date">March 2026</p>
+    <h2>The Art of Lime Plastering: A Timeless Tradition</h2>
+    <p>Lime plastering dates back thousands of years, gracing the walls of ancient civilisations from Rome to Rajasthan. Discover how this age-old technique is making a powerful comeback in modern architecture, and why designers across the world are choosing lime over synthetic alternatives.</p>
+  </article>
+
+  <article class="blog-card">
+    <p class="blog-date">February 2026</p>
+    <h2>Why Zero-VOC Matters for Your Home</h2>
+    <p>Indoor air quality directly affects your health and well-being. Learn why volatile organic compounds (VOCs) found in conventional paints are harmful, and how lime-based finishes offer a completely toxin-free alternative that lets your walls breathe.</p>
+  </article>
+
+  <article class="blog-card">
+    <p class="blog-date">January 2026</p>
+    <h2>Venetian Plaster: The Crown Jewel of Wall Finishes</h2>
+    <p>Venetian plaster is the most celebrated lime finish in the world — a technique perfected in Renaissance Italy. We explore its rich history, the meticulous process of application, and how LimeCoats brings this luxurious finish to contemporary Indian homes.</p>
+  </article>
+
+  <article class="blog-card">
+    <p class="blog-date">December 2025</p>
+    <h2>Sustainable Design: Building with Nature</h2>
+    <p>As the construction industry grapples with its environmental impact, sustainable materials are no longer optional — they are essential. Lime plaster absorbs CO₂ as it cures, making it one of the few building materials that actively reduces your carbon footprint.</p>
+  </article>
+
+  <article class="blog-card">
+    <p class="blog-date">November 2025</p>
+    <h2>Choosing the Right Texture for Your Space</h2>
+    <p>With over 18 artisanal textures in our portfolio, selecting the perfect finish can feel overwhelming. This guide walks you through our most popular textures — from the raw beauty of Rough Stone to the silky elegance of Venetian — and how to match them to your interior vision.</p>
+  </article>
+
+  <article class="blog-card">
+    <p class="blog-date">October 2025</p>
+    <h2>Behind the Scenes: A Day with Our Artisans</h2>
+    <p>What does it take to create a hand-crafted lime finish? We spent a day with our master plasterers on-site, documenting the precision, patience, and passion that goes into every square metre of a LimeCoats surface.</p>
+  </article>
+
+</section>
+
+<footer>
+  <img src="lc-cr.png" alt="LimeCoats">
+  <p class="copyright">&copy; 2026 LimeCoats. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

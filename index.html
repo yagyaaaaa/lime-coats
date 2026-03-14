@@ -27,18 +27,6 @@ body{
 }
 h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600}
 
-/* ─── LOADER ─── */
-#loader{
-  position:fixed;inset:0;z-index:10000;
-  background:var(--navy);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  transition:opacity .6s ease,visibility .6s ease;
-}
-#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-#loader-bar-wrap{width:240px;height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;margin-top:18px}
-#loader-bar{height:100%;width:0;background:var(--cyan);border-radius:2px;transition:width .15s linear}
-#loader p{font-size:.85rem;letter-spacing:.15em;color:rgba(245,245,240,.5);margin-top:10px}
-
 /* ─── HEADER ─── */
 header{
   position:fixed;top:0;left:0;width:100%;z-index:900;
@@ -51,7 +39,6 @@ header{
 }
 header .logo-icon{
   width:38px;height:38px;
-  transition:transform .4s ease;
 }
 header .brand-title{
   position:absolute;left:50%;transform:translateX(-50%);
@@ -92,63 +79,134 @@ header .brand-title{
 }
 .side-drawer nav a:hover{color:var(--cyan);padding-left:8px}
 
-/* ─── CANVAS SCROLL ANIMATION ─── */
-#scroll-canvas{
-  position:fixed;top:0;left:0;width:100%;height:100vh;
-  z-index:1;
+/* ─── ENTRY ANIMATIONS ─── */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
 }
-.scroll-spacer{
-  position:relative;
-  z-index:0;
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes scaleIn{
+  from{opacity:0;transform:scale(.8)}
+  to{opacity:1;transform:scale(1)}
 }
 
-/* ─── BRAND OVERLAY ─── */
-#brand-overlay{
-  position:fixed;top:0;left:0;width:100%;height:100vh;
+/* ─── HERO SECTION ─── */
+#hero{
+  position:relative;
+  min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:2;pointer-events:none;text-align:center;
-  padding:0 24px;
+  text-align:center;
+  padding:120px 24px 80px;
+  background:var(--navy);
 }
-#brand-overlay .brand-name{
+#hero .hero-logo{
+  width:clamp(120px,25vw,220px);
+  margin-bottom:30px;
+  animation:scaleIn 1s ease forwards;
+  opacity:0;
+}
+#hero .brand-name{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.4rem,6vw,5rem);
   letter-spacing:.12em;
   color:var(--off-white);
-  opacity:0;transition:none;
+  animation:fadeInUp .9s ease .3s forwards;
+  opacity:0;
 }
-#brand-overlay .tagline{
+#hero .tagline{
   font-size:clamp(.95rem,2vw,1.35rem);
   letter-spacing:.22em;
   color:var(--cyan);
   margin-top:10px;
-  opacity:0;transition:none;
+  animation:fadeInUp .9s ease .5s forwards;
+  opacity:0;
 }
-#brand-overlay .description{
-  max-width:560px;
-  font-size:clamp(.82rem,1.4vw,1rem);
-  line-height:1.7;
+#hero .description{
+  max-width:620px;
+  font-size:clamp(.85rem,1.4vw,1.05rem);
+  line-height:1.8;
   color:rgba(245,245,240,.65);
   margin-top:22px;
-  opacity:0;transition:none;
+  animation:fadeInUp .9s ease .7s forwards;
+  opacity:0;
+}
+#hero .hero-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:36px;
+  padding:14px 32px;
+  border:1px solid var(--cyan);
+  border-radius:30px;
+  color:var(--cyan);
+  text-decoration:none;
+  font-size:.9rem;
+  letter-spacing:.1em;
+  transition:background .3s,color .3s;
+  animation:fadeInUp .9s ease .9s forwards;
+  opacity:0;
+}
+#hero .hero-cta:hover{
+  background:var(--cyan);
+  color:var(--navy);
 }
 
-/* ─── MOUNTAIN LOGO REVEAL ─── */
-#mountain-reveal{
-  position:relative;z-index:3;
-  height:100vh;
-  display:flex;align-items:center;justify-content:center;
+/* ─── LAKEMON IMAGE SECTION ─── */
+#lakemon-section{
+  position:relative;
   background:var(--navy);
+  padding:0;
+  display:flex;align-items:center;justify-content:center;
 }
-#mountain-reveal img{
-  width:clamp(180px,40vw,420px);
-  opacity:0;transform:scale(.7);
-  transition:opacity .8s ease,transform .8s ease;
+#lakemon-section img{
+  width:100%;
+  max-height:70vh;
+  object-fit:cover;
 }
-#mountain-reveal img.visible{opacity:1;transform:scale(1)}
+
+/* ─── ABOUT US PREVIEW ─── */
+#about-preview{
+  position:relative;
+  background:var(--navy-light);
+  padding:100px 24px 80px;
+  text-align:center;
+}
+#about-preview .section-title{
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:var(--off-white);
+  margin-bottom:6px;
+}
+#about-preview .section-subtitle{
+  font-size:clamp(.9rem,1.6vw,1.15rem);
+  letter-spacing:.18em;color:var(--cyan);
+  margin-bottom:40px;
+}
+#about-preview .about-text{
+  max-width:800px;
+  margin:0 auto 30px;
+  font-size:clamp(.88rem,1.3vw,1rem);
+  line-height:1.85;
+  color:rgba(245,245,240,.7);
+}
+#about-preview .about-link{
+  display:inline-block;
+  padding:12px 28px;
+  border:1px solid var(--cyan);
+  border-radius:30px;
+  color:var(--cyan);
+  text-decoration:none;
+  font-size:.88rem;
+  letter-spacing:.1em;
+  transition:background .3s,color .3s;
+}
+#about-preview .about-link:hover{
+  background:var(--cyan);color:var(--navy);
+}
 
 /* ─── WHY LIME ─── */
 #why-lime{
-  position:relative;z-index:3;
+  position:relative;
   background:var(--navy);
   padding:100px 24px 80px;
   text-align:center;
@@ -161,7 +219,14 @@ header .brand-title{
 #why-lime .section-subtitle{
   font-size:clamp(.9rem,1.6vw,1.15rem);
   letter-spacing:.18em;color:var(--cyan);
-  margin-bottom:50px;
+  margin-bottom:20px;
+}
+#why-lime .why-lime-text{
+  max-width:800px;
+  margin:0 auto 50px;
+  font-size:clamp(.88rem,1.3vw,1rem);
+  line-height:1.85;
+  color:rgba(245,245,240,.7);
 }
 .eco-grid{
   display:grid;
@@ -183,9 +248,94 @@ header .brand-title{
 .eco-card .icon{font-size:2rem;margin-bottom:10px}
 .eco-card .label{font-size:.92rem;letter-spacing:.08em;font-weight:500}
 
+/* ─── WHY US ─── */
+#why-us{
+  position:relative;
+  background:var(--navy-light);
+  padding:100px 24px 80px;
+  text-align:center;
+}
+#why-us .section-title{
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:var(--off-white);
+  margin-bottom:6px;
+}
+#why-us .section-subtitle{
+  font-size:clamp(.9rem,1.6vw,1.15rem);
+  letter-spacing:.18em;color:var(--cyan);
+  margin-bottom:20px;
+}
+#why-us .why-us-text{
+  max-width:800px;
+  margin:0 auto 50px;
+  font-size:clamp(.88rem,1.3vw,1rem);
+  line-height:1.85;
+  color:rgba(245,245,240,.7);
+}
+.why-us-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;max-width:1060px;margin:0 auto;
+}
+.why-us-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:36px 22px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:transform .3s ease,box-shadow .3s ease;
+  text-align:left;
+}
+.why-us-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(100,255,218,.08);
+}
+.why-us-card .card-icon{font-size:1.8rem;margin-bottom:12px}
+.why-us-card h3{
+  font-size:1.1rem;margin-bottom:10px;
+  color:var(--off-white);
+}
+.why-us-card p{
+  font-size:.88rem;line-height:1.7;
+  color:rgba(245,245,240,.6);
+}
+
+/* ─── CATALOGUE LINK ─── */
+#catalogue{
+  position:relative;
+  background:var(--navy);
+  padding:80px 24px;
+  text-align:center;
+}
+#catalogue .section-title{
+  font-size:clamp(1.6rem,3.5vw,2.6rem);
+  color:var(--off-white);
+  margin-bottom:8px;
+}
+#catalogue .section-subtitle{
+  font-size:clamp(.88rem,1.4vw,1.05rem);
+  letter-spacing:.16em;color:var(--cyan);
+  margin-bottom:30px;
+}
+#catalogue .catalogue-link{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 36px;
+  background:var(--glass);
+  border:1px solid var(--cyan);
+  border-radius:30px;
+  color:var(--cyan);
+  text-decoration:none;
+  font-size:.95rem;
+  letter-spacing:.08em;
+  transition:background .3s,color .3s;
+}
+#catalogue .catalogue-link:hover{
+  background:var(--cyan);color:var(--navy);
+}
+
 /* ─── TEXTURE GRID ─── */
 #textures{
-  position:relative;z-index:3;
+  position:relative;
   background:var(--navy-light);
   padding:100px 24px 80px;
 }
@@ -239,7 +389,7 @@ header .brand-title{
 
 /* ─── FOOTER ─── */
 footer{
-  position:relative;z-index:3;
+  position:relative;
   background:var(--navy);
   border-top:1px solid var(--glass-border);
   padding:50px 24px 30px;
@@ -252,6 +402,16 @@ footer .contact-line{
 }
 footer .contact-line a{color:var(--cyan);text-decoration:none}
 footer .contact-line a:hover{text-decoration:underline}
+footer .footer-links{
+  margin-top:18px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;
+}
+footer .footer-links a{
+  color:rgba(245,245,240,.5);text-decoration:none;
+  font-size:.82rem;letter-spacing:.06em;
+  transition:color .2s;
+}
+footer .footer-links a:hover{color:var(--cyan)}
 footer .copyright{
   margin-top:22px;font-size:.78rem;
   color:rgba(245,245,240,.3);letter-spacing:.06em;
@@ -270,6 +430,7 @@ footer .copyright{
   header .brand-title{font-size:1rem;letter-spacing:.12em}
   .eco-grid{grid-template-columns:repeat(2,1fr);gap:14px}
   .texture-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .why-us-grid{grid-template-columns:1fr;gap:14px}
 }
 @media(max-width:480px){
   .texture-grid{grid-template-columns:1fr;gap:16px}
@@ -278,13 +439,6 @@ footer .copyright{
 </style>
 </head>
 <body>
-
-<!-- LOADER -->
-<div id="loader">
-  <img src="lc-cr.png" alt="LimeCoats" style="width:52px;opacity:.6">
-  <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
-  <p>Loading frames…</p>
-</div>
 
 <!-- HEADER -->
 <header id="site-header">
@@ -302,33 +456,41 @@ footer .copyright{
     <a href="#top">Home</a>
     <a href="#textures">Textures</a>
     <a href="#why-lime">Why Lime?</a>
+    <a href="about.html">About Us</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact Us</a>
     <a href="policy.html">Policy</a>
-    <a href="mailto:connect@limecoats.com">Contact</a>
   </nav>
 </div>
 
-<!-- SCROLL ANIMATION CANVAS -->
-<canvas id="scroll-canvas"></canvas>
-
-<!-- BRAND OVERLAY (on top of canvas) -->
-<div id="brand-overlay">
+<!-- HERO SECTION -->
+<section id="hero">
+  <img src="lclogo.png" alt="LimeCoats Logo" class="hero-logo">
   <h1 class="brand-name">LimeCoats</h1>
   <p class="tagline">Luxury Lime Finishes</p>
-  <p class="description">We bring the timeless art of lime plastering into modern spaces. Our artisanal textures breathe life into your walls — naturally.</p>
-</div>
+  <p class="description">We bring the timeless art of lime plastering into modern spaces. Our artisanal textures breathe life into your walls — naturally. Crafted from mineral-rich lime, each finish is a testament to centuries of tradition meeting contemporary design.</p>
+  <a href="#textures" class="hero-cta">Explore Our Textures ↓</a>
+</section>
 
-<!-- Scroll spacer for frame animation -->
-<div class="scroll-spacer" id="scroll-spacer"></div>
+<!-- LAKEMON IMAGE -->
+<section id="lakemon-section">
+  <img src="lakemon.jpg" alt="LimeCoats Showcase" class="fade-up">
+</section>
 
-<!-- MOUNTAIN LOGO REVEAL -->
-<section id="mountain-reveal">
-  <img src="lclogo.png" alt="LimeCoats Mountain Logo" id="mountain-logo">
+<!-- ABOUT US PREVIEW -->
+<section id="about-preview">
+  <h2 class="section-title fade-up">Who We Are</h2>
+  <p class="section-subtitle fade-up">Artisans of Natural Beauty</p>
+  <p class="about-text fade-up">LimeCoats is a collective of skilled artisans, architects, and eco-conscious designers dedicated to redefining interior surfaces. We believe walls should do more than stand — they should inspire. Our team brings decades of combined expertise in traditional lime plastering, blending old-world craftsmanship with modern aesthetics to deliver finishes that are as sustainable as they are stunning.</p>
+  <p class="about-text fade-up">From luxury residences and boutique hotels to commercial showrooms, we have transformed spaces across the country with textures that tell a story. Every surface we touch becomes a canvas of organic beauty.</p>
+  <a href="about.html" class="about-link fade-up">Learn More About Us →</a>
 </section>
 
 <!-- WHY LIME -->
 <section id="why-lime">
   <h2 class="section-title fade-up">Why Lime?</h2>
   <p class="section-subtitle fade-up">The Ecological Difference</p>
+  <p class="why-lime-text fade-up">Lime plaster has been used for thousands of years, from ancient Roman aqueducts to Renaissance frescoes. Unlike synthetic paints and coatings, lime is a living material — it absorbs carbon dioxide as it cures, actively reducing your carbon footprint. It is naturally antibacterial, breathable, and free of volatile organic compounds (VOCs), making it the healthiest choice for your home and the planet.</p>
   <div class="eco-grid">
     <div class="eco-card fade-up"><div class="icon">🌿</div><div class="label">Zero VOC</div></div>
     <div class="eco-card fade-up"><div class="icon">✨</div><div class="label">Toxin-Free</div></div>
@@ -339,6 +501,42 @@ footer .copyright{
     <div class="eco-card fade-up"><div class="icon">🧫</div><div class="label">Antibacterial</div></div>
     <div class="eco-card fade-up"><div class="icon">🌱</div><div class="label">Organic</div></div>
   </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us">
+  <h2 class="section-title fade-up">Why LimeCoats?</h2>
+  <p class="section-subtitle fade-up">What Sets Us Apart</p>
+  <p class="why-us-text fade-up">We are not just applicators — we are artists. Every project we undertake is treated with the care and precision of a master craftsman. Here is what makes LimeCoats the preferred choice for discerning clients.</p>
+  <div class="why-us-grid">
+    <div class="why-us-card fade-up">
+      <div class="card-icon">🎨</div>
+      <h3>Bespoke Artistry</h3>
+      <p>Each finish is hand-applied by trained artisans, ensuring no two walls are ever the same. Your space becomes a one-of-a-kind masterpiece.</p>
+    </div>
+    <div class="why-us-card fade-up">
+      <div class="card-icon">🏗️</div>
+      <h3>End-to-End Service</h3>
+      <p>From consultation and colour selection to application and aftercare, we manage every step so you can sit back and watch your vision come to life.</p>
+    </div>
+    <div class="why-us-card fade-up">
+      <div class="card-icon">🌍</div>
+      <h3>Eco-First Philosophy</h3>
+      <p>Sustainability is not an afterthought — it is our foundation. We use only natural, mineral-based materials that are kind to the earth and safe for your family.</p>
+    </div>
+    <div class="why-us-card fade-up">
+      <div class="card-icon">⭐</div>
+      <h3>Premium Quality</h3>
+      <p>We source the finest European-grade lime and pigments, delivering finishes that are not only beautiful but built to last for decades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGUE -->
+<section id="catalogue">
+  <h2 class="section-title fade-up">Our Catalogue</h2>
+  <p class="section-subtitle fade-up">Explore our complete range</p>
+  <a href="Limecoats_2026.pdf" target="_blank" rel="noopener noreferrer" class="catalogue-link fade-up">📄 Download LimeCoats 2026 Catalogue</a>
 </section>
 
 <!-- TEXTURES -->
@@ -353,6 +551,12 @@ footer .copyright{
   <img src="lc-cr.png" alt="LimeCoats">
   <p class="contact-line"><a href="mailto:connect@limecoats.com">connect@limecoats.com</a></p>
   <p class="contact-line"><a href="tel:+918433552656">+91 84335 52656</a></p>
+  <div class="footer-links">
+    <a href="about.html">About Us</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="policy.html">Policy</a>
+  </div>
   <p class="copyright">&copy; 2026 LimeCoats. All rights reserved.</p>
 </footer>
 
@@ -391,130 +595,6 @@ footer .copyright{
     a.innerHTML = '<img src="' + t.img + '" alt="' + t.name + '" loading="lazy">' +
                   '<div class="card-label">' + t.name + '</div>';
     grid.appendChild(a);
-  });
-
-  /* ── Frame animation setup ── */
-  const TOTAL_FRAMES = 240;
-  const SCROLL_HEIGHT_PER_FRAME = 18; // total scroll distance = TOTAL_FRAMES * SCROLL_HEIGHT_PER_FRAME
-  const canvas = document.getElementById("scroll-canvas");
-  const ctx = canvas.getContext("2d");
-  const frames = [];
-  let loadedCount = 0;
-  const loaderBar = document.getElementById("loader-bar");
-  const loaderEl = document.getElementById("loader");
-
-  function framePath(i){
-    const n = String(i).padStart(3,"0");
-    return "Frames/ezgif-frame-" + n + ".jpg";
-  }
-
-  function resizeCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  function drawFrame(img){
-    if(!img || !img.complete) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const cw = canvas.width, ch = canvas.height;
-    const iw = img.naturalWidth, ih = img.naturalHeight;
-    const scale = Math.max(cw / iw, ch / ih);
-    const dw = iw * scale, dh = ih * scale;
-    const dx = (cw - dw) / 2, dy = (ch - dh) / 2;
-    ctx.drawImage(img, dx, dy, dw, dh);
-  }
-
-  /* Preload all frames */
-  function preloadFrames(){
-    for(let i = 1; i <= TOTAL_FRAMES; i++){
-      const img = new Image();
-      img.src = framePath(i);
-      img.onload = img.onerror = function(){
-        if(this.naturalWidth === 0) console.warn("Frame failed to load:", this.src);
-        loadedCount++;
-        const pct = Math.round((loadedCount / TOTAL_FRAMES) * 100);
-        loaderBar.style.width = pct + "%";
-        if(loadedCount >= TOTAL_FRAMES){
-          loaderEl.classList.add("hidden");
-          drawFrame(frames[0]);
-          onScrollUpdate();
-        }
-      };
-      frames.push(img);
-    }
-  }
-  preloadFrames();
-
-  /* ── Scroll-driven logic ── */
-  const spacer = document.getElementById("scroll-spacer");
-  spacer.style.height = (TOTAL_FRAMES * SCROLL_HEIGHT_PER_FRAME) + "px";
-
-  const brandOverlay = document.getElementById("brand-overlay");
-  const brandName = brandOverlay.querySelector(".brand-name");
-  const tagline = brandOverlay.querySelector(".tagline");
-  const description = brandOverlay.querySelector(".description");
-  const headerLogo = document.getElementById("header-logo");
-  const mountainLogo = document.getElementById("mountain-logo");
-
-  let ticking = false;
-
-  function onScrollUpdate(){
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const maxScroll = TOTAL_FRAMES * SCROLL_HEIGHT_PER_FRAME;
-
-    /* ── Frame index ── */
-    const progress = Math.min(scrollY / maxScroll, 1);
-    const frameIdx = Math.min(Math.floor(progress * TOTAL_FRAMES), TOTAL_FRAMES - 1);
-    if(frames[frameIdx] && frames[frameIdx].complete){
-      drawFrame(frames[frameIdx]);
-    }
-
-    /* ── Canvas + overlay visibility ── */
-    if(scrollY < maxScroll){
-      canvas.style.opacity = "1";
-      brandOverlay.style.display = "flex";
-    } else {
-      canvas.style.opacity = "0";
-      brandOverlay.style.display = "none";
-    }
-
-    /* ── Brand text fade: in 8%-18%, hold 18%-60%, out 60%-80% ── */
-    const fadeInStart = 0.08, fadeInEnd = 0.18;
-    const fadeOutStart = 0.60, fadeOutEnd = 0.80;
-    let textAlpha = 0;
-    if(progress < fadeInStart){
-      textAlpha = 0;
-    } else if(progress < fadeInEnd){
-      textAlpha = (progress - fadeInStart) / (fadeInEnd - fadeInStart);
-    } else if(progress < fadeOutStart){
-      textAlpha = 1;
-    } else if(progress < fadeOutEnd){
-      textAlpha = 1 - (progress - fadeOutStart) / (fadeOutEnd - fadeOutStart);
-    }
-    brandName.style.opacity = textAlpha;
-    tagline.style.opacity = textAlpha;
-    description.style.opacity = Math.max(0, textAlpha - 0.15);
-
-    /* ── Header logo rotate ── */
-    headerLogo.style.transform = "rotate(" + (scrollY * 0.12) + "deg)";
-
-    /* ── Mountain logo reveal ── */
-    const mtSection = document.getElementById("mountain-reveal");
-    const mtRect = mtSection.getBoundingClientRect();
-    if(mtRect.top < window.innerHeight * 0.75){
-      mountainLogo.classList.add("visible");
-    }
-
-    ticking = false;
-  }
-
-  window.addEventListener("scroll", function(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(onScrollUpdate);
-    }
   });
 
   /* ── Intersection observer for fade-up elements ── */
