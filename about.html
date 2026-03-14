@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — LimeCoats</title>
+<meta name="description" content="Learn about LimeCoats — our story, mission, and the passionate artisans behind luxury lime finishes.">
+<link rel="icon" type="image/png" href="lc-cr.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0A192F;
+  --navy-light:#112240;
+  --cyan:#64FFDA;
+  --off-white:#F5F5F0;
+  --glass:rgba(17,34,64,.55);
+  --glass-border:rgba(100,255,218,.12);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--navy);
+  color:var(--off-white);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600}
+
+/* ─── HEADER ─── */
+header{
+  position:sticky;top:0;width:100%;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:rgba(10,25,47,.85);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--glass-border);
+}
+header .logo-icon{width:34px;height:34px}
+header .brand-title{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font-family:'Playfair Display',serif;font-size:1.1rem;letter-spacing:.18em;
+  color:var(--off-white);text-decoration:none;
+}
+header .back-btn{
+  font-size:.88rem;color:var(--cyan);text-decoration:none;
+  letter-spacing:.06em;
+}
+header .back-btn:hover{text-decoration:underline}
+
+/* ─── ABOUT CONTENT ─── */
+.about-hero{
+  text-align:center;
+  padding:80px 24px 60px;
+}
+.about-hero h1{
+  font-size:clamp(2rem,4vw,3.2rem);
+  margin-bottom:10px;
+}
+.about-hero .subtitle{
+  font-size:clamp(.88rem,1.5vw,1.1rem);
+  letter-spacing:.18em;
+  color:var(--cyan);
+  margin-bottom:20px;
+}
+.about-section{
+  flex:1;
+  max-width:800px;
+  margin:0 auto;
+  padding:0 24px 80px;
+}
+.about-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:40px 36px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  margin-bottom:30px;
+}
+.about-card h2{
+  font-size:1.4rem;
+  margin-bottom:14px;
+  color:var(--off-white);
+}
+.about-card p{
+  font-size:.95rem;
+  line-height:1.85;
+  color:rgba(245,245,240,.75);
+}
+.about-card p + p{
+  margin-top:16px;
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  max-width:800px;
+  margin:0 auto;
+  padding:0 24px 80px;
+}
+.value-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:30px 20px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  text-align:center;
+}
+.value-card .icon{font-size:2rem;margin-bottom:10px}
+.value-card h3{font-size:1rem;margin-bottom:8px}
+.value-card p{
+  font-size:.85rem;line-height:1.7;
+  color:rgba(245,245,240,.6);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  border-top:1px solid var(--glass-border);
+  padding:40px 24px 24px;
+  text-align:center;
+}
+footer img{width:40px;margin-bottom:10px;opacity:.6}
+footer .copyright{
+  font-size:.75rem;color:rgba(245,245,240,.3);letter-spacing:.06em;
+}
+@media(max-width:768px){
+  header{padding:12px 16px}
+  header .brand-title{font-size:.95rem;letter-spacing:.12em}
+  .about-section{padding:0 18px 50px}
+  .about-card{padding:28px 22px}
+  .values-grid{grid-template-columns:1fr 1fr;padding:0 18px 50px}
+}
+@media(max-width:480px){
+  .values-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-btn">← Home</a>
+  <a href="index.html" class="brand-title">LIMECOATS</a>
+  <img src="lc-cr.png" alt="LimeCoats" class="logo-icon">
+</header>
+
+<div class="about-hero">
+  <h1>About LimeCoats</h1>
+  <p class="subtitle">Our Story &amp; Mission</p>
+</div>
+
+<section class="about-section">
+  <div class="about-card">
+    <h2>Who We Are</h2>
+    <p>LimeCoats is a collective of skilled artisans, architects, and eco-conscious designers dedicated to redefining interior surfaces. We believe walls should do more than stand — they should inspire. Our team brings decades of combined expertise in traditional lime plastering, blending old-world craftsmanship with modern aesthetics.</p>
+    <p>Founded with a vision to bring the timeless beauty of lime finishes to contemporary spaces, we have grown into a trusted name for luxury wall treatments across India and beyond.</p>
+  </div>
+
+  <div class="about-card">
+    <h2>Our Mission</h2>
+    <p>We are on a mission to make sustainable luxury accessible. Every surface we touch becomes a canvas of organic beauty — free from toxins, kind to the planet, and built to last for generations. We believe that choosing eco-friendly materials should never mean compromising on aesthetics.</p>
+    <p>From luxury residences and boutique hotels to commercial showrooms, we have transformed spaces across the country with textures that tell a story. Each project is a collaboration between our artisans and our clients, resulting in finishes that are truly one-of-a-kind.</p>
+  </div>
+
+  <div class="about-card">
+    <h2>Our Craft</h2>
+    <p>Lime plastering is one of the oldest building techniques in the world, used in structures that have stood for millennia. We honour this tradition while pushing its boundaries — experimenting with textures, pigments, and application methods to create finishes that are both timeless and contemporary.</p>
+    <p>Every finish in our portfolio is hand-applied by trained artisans using European-grade lime and natural mineral pigments. The result is a surface that is alive — it breathes, absorbs carbon dioxide, and develops a beautiful patina over time.</p>
+  </div>
+</section>
+
+<div class="values-grid">
+  <div class="value-card">
+    <div class="icon">🎨</div>
+    <h3>Artistry</h3>
+    <p>Hand-crafted finishes that make every wall unique.</p>
+  </div>
+  <div class="value-card">
+    <div class="icon">🌍</div>
+    <h3>Sustainability</h3>
+    <p>Natural materials that heal the planet as they cure.</p>
+  </div>
+  <div class="value-card">
+    <div class="icon">⭐</div>
+    <h3>Excellence</h3>
+    <p>Premium European-grade lime and pigments in every project.</p>
+  </div>
+  <div class="value-card">
+    <div class="icon">🤝</div>
+    <h3>Trust</h3>
+    <p>Transparent process from consultation to completion.</p>
+  </div>
+</div>
+
+<footer>
+  <img src="lc-cr.png" alt="LimeCoats">
+  <p class="copyright">&copy; 2026 LimeCoats. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
