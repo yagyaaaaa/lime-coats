@@ -631,7 +631,9 @@ footer .copyright{
   var logo = document.querySelector("header .logo-icon");
   if(logo){
     window.addEventListener("scroll", function(){
-      logo.style.transform = "rotate(" + (window.pageYOffset * 0.5) + "deg)";
+      requestAnimationFrame(function(){
+        logo.style.transform = "rotate(" + (window.scrollY * 0.5) + "deg)";
+      });
     });
   }
 
