@@ -1,643 +1,962 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LimeCoats — Luxury Lime Finishes</title>
-<meta name="description" content="LimeCoats brings the timeless art of lime plastering into modern spaces. Artisanal textures that breathe life into your walls — naturally.">
-<link rel="icon" type="image/png" href="lc-cr.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#0A192F;
-  --navy-light:#112240;
-  --cyan:#64FFDA;
-  --olive:#808000;
-  --off-white:#F5F5F0;
-  --glass:rgba(17,34,64,.55);
-  --glass-border:rgba(100,255,218,.12);
-}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Montserrat',sans-serif;
-  background:var(--navy);
-  color:var(--off-white);
-  overflow-x:hidden;
-}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600}
-
-/* ─── HEADER ─── */
-header{
-  position:fixed;top:0;left:0;width:100%;z-index:900;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 28px;
-  background:rgba(10,25,47,.75);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--glass-border);
-  transition:background .3s;
-}
-header .logo-icon{
-  width:38px;height:38px;
-}
-header .brand-title{
-  position:absolute;left:50%;transform:translateX(-50%);
-  font-family:'Playfair Display',serif;font-size:1.2rem;letter-spacing:.18em;
-  color:var(--off-white);
-}
-.hamburger{
-  width:30px;height:22px;display:flex;flex-direction:column;justify-content:space-between;
-  cursor:pointer;z-index:1001;
-}
-.hamburger span{
-  display:block;height:2px;width:100%;background:var(--off-white);
-  border-radius:2px;transition:all .3s ease;
-}
-.hamburger.active span:nth-child(1){transform:translateY(10px) rotate(45deg)}
-.hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:translateY(-10px) rotate(-45deg)}
-
-/* ─── SIDE DRAWER ─── */
-.drawer-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:950;
-  opacity:0;visibility:hidden;transition:all .3s ease;
-}
-.drawer-overlay.open{opacity:1;visibility:visible}
-.side-drawer{
-  position:fixed;top:0;right:-320px;width:300px;height:100%;z-index:960;
-  background:var(--navy-light);
-  border-left:1px solid var(--glass-border);
-  padding:90px 36px 36px;
-  transition:right .35s cubic-bezier(.4,0,.2,1);
-}
-.side-drawer.open{right:0}
-.side-drawer nav a{
-  display:block;font-size:1.1rem;padding:16px 0;
-  color:var(--off-white);text-decoration:none;letter-spacing:.08em;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  transition:color .2s,padding-left .2s;
-}
-.side-drawer nav a:hover{color:var(--cyan);padding-left:8px}
-
-/* ─── ENTRY ANIMATIONS ─── */
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
-}
-@keyframes scaleIn{
-  from{opacity:0;transform:scale(.8)}
-  to{opacity:1;transform:scale(1)}
-}
-
-/* ─── HERO SECTION ─── */
-#hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 24px 80px;
-  background:var(--navy);
-}
-#hero .hero-logo{
-  width:clamp(120px,25vw,220px);
-  margin-bottom:30px;
-  animation:scaleIn 1s ease forwards;
-  opacity:0;
-}
-#hero .brand-name{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.4rem,6vw,5rem);
-  letter-spacing:.12em;
-  color:var(--off-white);
-  animation:fadeInUp .9s ease .3s forwards;
-  opacity:0;
-}
-#hero .tagline{
-  font-size:clamp(.95rem,2vw,1.35rem);
-  letter-spacing:.22em;
-  color:var(--cyan);
-  margin-top:10px;
-  animation:fadeInUp .9s ease .5s forwards;
-  opacity:0;
-}
-#hero .description{
-  max-width:620px;
-  font-size:clamp(.85rem,1.4vw,1.05rem);
-  line-height:1.8;
-  color:rgba(245,245,240,.65);
-  margin-top:22px;
-  animation:fadeInUp .9s ease .7s forwards;
-  opacity:0;
-}
-#hero .hero-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  margin-top:36px;
-  padding:14px 32px;
-  border:1px solid var(--cyan);
-  border-radius:30px;
-  color:var(--cyan);
-  text-decoration:none;
-  font-size:.9rem;
-  letter-spacing:.1em;
-  transition:background .3s,color .3s;
-  animation:fadeInUp .9s ease .9s forwards;
-  opacity:0;
-}
-#hero .hero-cta:hover{
-  background:var(--cyan);
-  color:var(--navy);
-}
-
-/* ─── LAKEMON IMAGE SECTION ─── */
-#lakemon-section{
-  position:relative;
-  background:var(--navy);
-  padding:0;
-  display:flex;align-items:center;justify-content:center;
-}
-#lakemon-section img{
-  width:100%;
-  max-height:70vh;
-  object-fit:cover;
-}
-
-/* ─── ABOUT US PREVIEW ─── */
-#about-preview{
-  position:relative;
-  background:var(--navy-light);
-  padding:100px 24px 80px;
-  text-align:center;
-}
-#about-preview .section-title{
-  font-size:clamp(2rem,4vw,3.2rem);
-  color:var(--off-white);
-  margin-bottom:6px;
-}
-#about-preview .section-subtitle{
-  font-size:clamp(.9rem,1.6vw,1.15rem);
-  letter-spacing:.18em;color:var(--cyan);
-  margin-bottom:40px;
-}
-#about-preview .about-text{
-  max-width:800px;
-  margin:0 auto 30px;
-  font-size:clamp(.88rem,1.3vw,1rem);
-  line-height:1.85;
-  color:rgba(245,245,240,.7);
-}
-#about-preview .about-link{
-  display:inline-block;
-  padding:12px 28px;
-  border:1px solid var(--cyan);
-  border-radius:30px;
-  color:var(--cyan);
-  text-decoration:none;
-  font-size:.88rem;
-  letter-spacing:.1em;
-  transition:background .3s,color .3s;
-}
-#about-preview .about-link:hover{
-  background:var(--cyan);color:var(--navy);
-}
-
-/* ─── WHY LIME ─── */
-#why-lime{
-  position:relative;
-  background:var(--navy);
-  padding:100px 24px 80px;
-  text-align:center;
-}
-#why-lime .section-title{
-  font-size:clamp(2rem,4vw,3.2rem);
-  color:var(--off-white);
-  margin-bottom:6px;
-}
-#why-lime .section-subtitle{
-  font-size:clamp(.9rem,1.6vw,1.15rem);
-  letter-spacing:.18em;color:var(--cyan);
-  margin-bottom:20px;
-}
-#why-lime .why-lime-text{
-  max-width:800px;
-  margin:0 auto 50px;
-  font-size:clamp(.88rem,1.3vw,1rem);
-  line-height:1.85;
-  color:rgba(245,245,240,.7);
-}
-.eco-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:22px;max-width:960px;margin:0 auto;
-}
-.eco-card{
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  border-radius:16px;
-  padding:32px 18px;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  transition:transform .3s ease,box-shadow .3s ease;
-}
-.eco-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 40px rgba(100,255,218,.08);
-}
-.eco-card .icon{font-size:2rem;margin-bottom:10px}
-.eco-card .label{font-size:.92rem;letter-spacing:.08em;font-weight:500}
-
-/* ─── WHY US ─── */
-#why-us{
-  position:relative;
-  background:var(--navy-light);
-  padding:100px 24px 80px;
-  text-align:center;
-}
-#why-us .section-title{
-  font-size:clamp(2rem,4vw,3.2rem);
-  color:var(--off-white);
-  margin-bottom:6px;
-}
-#why-us .section-subtitle{
-  font-size:clamp(.9rem,1.6vw,1.15rem);
-  letter-spacing:.18em;color:var(--cyan);
-  margin-bottom:20px;
-}
-#why-us .why-us-text{
-  max-width:800px;
-  margin:0 auto 50px;
-  font-size:clamp(.88rem,1.3vw,1rem);
-  line-height:1.85;
-  color:rgba(245,245,240,.7);
-}
-.why-us-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:22px;max-width:1060px;margin:0 auto;
-}
-.why-us-card{
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  border-radius:16px;
-  padding:36px 22px;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  transition:transform .3s ease,box-shadow .3s ease;
-  text-align:left;
-}
-.why-us-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 40px rgba(100,255,218,.08);
-}
-.why-us-card .card-icon{font-size:1.8rem;margin-bottom:12px}
-.why-us-card h3{
-  font-size:1.1rem;margin-bottom:10px;
-  color:var(--off-white);
-}
-.why-us-card p{
-  font-size:.88rem;line-height:1.7;
-  color:rgba(245,245,240,.6);
-}
-
-/* ─── CATALOGUE LINK ─── */
-#catalogue{
-  position:relative;
-  background:var(--navy);
-  padding:80px 24px;
-  text-align:center;
-}
-#catalogue .section-title{
-  font-size:clamp(1.6rem,3.5vw,2.6rem);
-  color:var(--off-white);
-  margin-bottom:8px;
-}
-#catalogue .section-subtitle{
-  font-size:clamp(.88rem,1.4vw,1.05rem);
-  letter-spacing:.16em;color:var(--cyan);
-  margin-bottom:30px;
-}
-#catalogue .catalogue-link{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:16px 36px;
-  background:var(--glass);
-  border:1px solid var(--cyan);
-  border-radius:30px;
-  color:var(--cyan);
-  text-decoration:none;
-  font-size:.95rem;
-  letter-spacing:.08em;
-  transition:background .3s,color .3s;
-}
-#catalogue .catalogue-link:hover{
-  background:var(--cyan);color:var(--navy);
-}
-
-/* ─── TEXTURE GRID ─── */
-#textures{
-  position:relative;
-  background:var(--navy-light);
-  padding:100px 24px 80px;
-}
-#textures .section-title{
-  text-align:center;
-  font-size:clamp(2rem,4vw,3.2rem);
-  color:var(--off-white);
-  margin-bottom:8px;
-}
-#textures .section-subtitle{
-  text-align:center;
-  font-size:clamp(.88rem,1.5vw,1.1rem);
-  letter-spacing:.16em;color:var(--cyan);
-  margin-bottom:50px;
-}
-.texture-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:24px;max-width:1280px;margin:0 auto;
-}
-.texture-card{
-  position:relative;
-  aspect-ratio:1/1;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  transition:transform .35s ease,box-shadow .35s ease;
-  text-decoration:none;
-  display:block;
-}
-.texture-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 16px 50px rgba(100,255,218,.12);
-}
-.texture-card img{
-  width:100%;height:100%;
-  object-fit:cover;
-  transition:transform .5s ease;
-}
-.texture-card:hover img{transform:scale(1.08)}
-.texture-card .card-label{
-  position:absolute;bottom:0;left:0;width:100%;
-  padding:30px 16px 16px;
-  background:linear-gradient(transparent,rgba(10,25,47,.88));
-  font-family:'Playfair Display',serif;
-  font-size:1rem;letter-spacing:.08em;
-  color:var(--off-white);
-}
-
-/* ─── FOOTER ─── */
-footer{
-  position:relative;
-  background:var(--navy);
-  border-top:1px solid var(--glass-border);
-  padding:50px 24px 30px;
-  text-align:center;
-}
-footer img{width:48px;margin-bottom:14px;opacity:.7}
-footer .contact-line{
-  font-size:.88rem;color:rgba(245,245,240,.55);
-  margin:4px 0;
-}
-footer .contact-line a{color:var(--cyan);text-decoration:none}
-footer .contact-line a:hover{text-decoration:underline}
-footer .footer-links{
-  margin-top:18px;
-  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;
-}
-footer .footer-links a{
-  color:rgba(245,245,240,.5);text-decoration:none;
-  font-size:.82rem;letter-spacing:.06em;
-  transition:color .2s;
-}
-footer .footer-links a:hover{color:var(--cyan)}
-footer .copyright{
-  margin-top:22px;font-size:.78rem;
-  color:rgba(245,245,240,.3);letter-spacing:.06em;
-}
-
-/* ─── FADE-IN UTILITY ─── */
-.fade-up{
-  opacity:0;transform:translateY(30px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:768px){
-  header{padding:12px 18px}
-  header .brand-title{font-size:1rem;letter-spacing:.12em}
-  .eco-grid{grid-template-columns:repeat(2,1fr);gap:14px}
-  .texture-grid{grid-template-columns:repeat(2,1fr);gap:14px}
-  .why-us-grid{grid-template-columns:1fr;gap:14px}
-}
-@media(max-width:480px){
-  .texture-grid{grid-template-columns:1fr;gap:16px}
-  .eco-grid{grid-template-columns:repeat(2,1fr)}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LimeCoats — Luxury Lime Finishes</title>
+    <meta name="description" content="LimeCoats brings the timeless art of lime plastering into modern spaces. Artisanal textures that breathe life into your walls — naturally.">
+    <link rel="icon" type="image/png" href="lc-cr.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        
+        :root {
+            --navy: #0A192F;
+            --navy-light: #112240;
+            --cyan: #64FFDA;
+            --olive: #808000;
+            --off-white: #F5F5F0;
+            --glass: rgba(17, 34, 64, .55);
+            --glass-border: rgba(100, 255, 218, .12);
+        }
+        
+        html {
+            scroll-behavior: smooth
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--navy);
+            color: var(--off-white);
+            overflow-x: hidden;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600
+        }
+        /* ─── HEADER ─── */
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 28px;
+            background: rgba(10, 25, 47, .75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: background .3s;
+        }
+        
+        header .logo-icon {
+            width: 38px;
+            height: 38px;
+        }
+        
+        header .brand-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: .18em;
+            color: var(--off-white);
+        }
+        
+        .hamburger {
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--off-white);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(10px) rotate(45deg)
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg)
+        }
+        /* ─── SIDE DRAWER ─── */
+        
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .5);
+            z-index: 950;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s ease;
+        }
+        
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible
+        }
+        
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100%;
+            z-index: 960;
+            background: var(--navy-light);
+            border-left: 1px solid var(--glass-border);
+            padding: 90px 36px 36px;
+            transition: right .35s cubic-bezier(.4, 0, .2, 1);
+        }
+        
+        .side-drawer.open {
+            right: 0
+        }
+        
+        .side-drawer nav a {
+            display: block;
+            font-size: 1.1rem;
+            padding: 16px 0;
+            color: var(--off-white);
+            text-decoration: none;
+            letter-spacing: .08em;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            transition: color .2s, padding-left .2s;
+        }
+        
+        .side-drawer nav a:hover {
+            color: var(--cyan);
+            padding-left: 8px
+        }
+        /* ─── ENTRY ANIMATIONS ─── */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+            to {
+                opacity: 1
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(.8)
+            }
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+        /* ─── HERO SECTION ─── */
+        
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: var(--navy);
+        }
+        
+        #hero .hero-logo {
+            width: clamp(120px, 25vw, 220px);
+            margin-bottom: 30px;
+            animation: scaleIn 1s ease forwards;
+            opacity: 0;
+        }
+        
+        #hero .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            letter-spacing: .12em;
+            color: var(--off-white);
+            animation: fadeInUp .9s ease .3s forwards;
+            opacity: 0;
+        }
+        
+        #hero .tagline {
+            font-size: clamp(.95rem, 2vw, 1.35rem);
+            letter-spacing: .22em;
+            color: var(--cyan);
+            margin-top: 10px;
+            animation: fadeInUp .9s ease .5s forwards;
+            opacity: 0;
+        }
+        
+        #hero .description {
+            max-width: 620px;
+            font-size: clamp(.85rem, 1.4vw, 1.05rem);
+            line-height: 1.8;
+            color: rgba(245, 245, 240, .65);
+            margin-top: 22px;
+            animation: fadeInUp .9s ease .7s forwards;
+            opacity: 0;
+        }
+        
+        #hero .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 36px;
+            padding: 14px 32px;
+            border: 1px solid var(--cyan);
+            border-radius: 30px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: .9rem;
+            letter-spacing: .1em;
+            transition: background .3s, color .3s;
+            animation: fadeInUp .9s ease .9s forwards;
+            opacity: 0;
+        }
+        
+        #hero .hero-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+        }
+        /* ─── LAKEMON IMAGE SECTION ─── */
+        
+        #lakemon-section {
+            position: relative;
+            background: var(--navy);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #lakemon-section img {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: cover;
+        }
+        /* ─── ABOUT US PREVIEW ─── */
+        
+        #about-preview {
+            position: relative;
+            background: var(--navy-light);
+            padding: 100px 24px 80px;
+            text-align: center;
+        }
+        
+        #about-preview .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--off-white);
+            margin-bottom: 6px;
+        }
+        
+        #about-preview .section-subtitle {
+            font-size: clamp(.9rem, 1.6vw, 1.15rem);
+            letter-spacing: .18em;
+            color: var(--cyan);
+            margin-bottom: 40px;
+        }
+        
+        #about-preview .about-text {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: clamp(.88rem, 1.3vw, 1rem);
+            line-height: 1.85;
+            color: rgba(245, 245, 240, .7);
+        }
+        
+        #about-preview .about-link {
+            display: inline-block;
+            padding: 12px 28px;
+            border: 1px solid var(--cyan);
+            border-radius: 30px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: .88rem;
+            letter-spacing: .1em;
+            transition: background .3s, color .3s;
+        }
+        
+        #about-preview .about-link:hover {
+            background: var(--cyan);
+            color: var(--navy);
+        }
+        /* ─── WHY LIME ─── */
+        
+        #why-lime {
+            position: relative;
+            background: var(--navy);
+            padding: 100px 24px 80px;
+            text-align: center;
+        }
+        
+        #why-lime .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--off-white);
+            margin-bottom: 6px;
+        }
+        
+        #why-lime .section-subtitle {
+            font-size: clamp(.9rem, 1.6vw, 1.15rem);
+            letter-spacing: .18em;
+            color: var(--cyan);
+            margin-bottom: 20px;
+        }
+        
+        #why-lime .why-lime-text {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: clamp(.88rem, 1.3vw, 1rem);
+            line-height: 1.85;
+            color: rgba(245, 245, 240, .7);
+        }
+        
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 22px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        
+        .eco-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 32px 18px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        
+        .eco-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(100, 255, 218, .08);
+        }
+        
+        .eco-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px
+        }
+        
+        .eco-card .label {
+            font-size: .92rem;
+            letter-spacing: .08em;
+            font-weight: 500
+        }
+        /* ─── WHY US ─── */
+        
+        #why-us {
+            position: relative;
+            background: var(--navy-light);
+            padding: 100px 24px 80px;
+            text-align: center;
+        }
+        
+        #why-us .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--off-white);
+            margin-bottom: 6px;
+        }
+        
+        #why-us .section-subtitle {
+            font-size: clamp(.9rem, 1.6vw, 1.15rem);
+            letter-spacing: .18em;
+            color: var(--cyan);
+            margin-bottom: 20px;
+        }
+        
+        #why-us .why-us-text {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: clamp(.88rem, 1.3vw, 1rem);
+            line-height: 1.85;
+            color: rgba(245, 245, 240, .7);
+        }
+        
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            max-width: 1060px;
+            margin: 0 auto;
+        }
+        
+        .why-us-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 36px 22px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform .3s ease, box-shadow .3s ease;
+            text-align: left;
+        }
+        
+        .why-us-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(100, 255, 218, .08);
+        }
+        
+        .why-us-card .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px
+        }
+        
+        .why-us-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--off-white);
+        }
+        
+        .why-us-card p {
+            font-size: .88rem;
+            line-height: 1.7;
+            color: rgba(245, 245, 240, .6);
+        }
+        /* ─── CATALOGUE LINK ─── */
+        
+        #catalogue {
+            position: relative;
+            background: var(--navy);
+            padding: 80px 24px;
+            text-align: center;
+        }
+        
+        #catalogue .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            color: var(--off-white);
+            margin-bottom: 8px;
+        }
+        
+        #catalogue .section-subtitle {
+            font-size: clamp(.88rem, 1.4vw, 1.05rem);
+            letter-spacing: .16em;
+            color: var(--cyan);
+            margin-bottom: 30px;
+        }
+        
+        #catalogue .catalogue-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--glass);
+            border: 1px solid var(--cyan);
+            border-radius: 30px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: .95rem;
+            letter-spacing: .08em;
+            transition: background .3s, color .3s;
+        }
+        
+        #catalogue .catalogue-link:hover {
+            background: var(--cyan);
+            color: var(--navy);
+        }
+        /* ─── TEXTURE GRID ─── */
+        
+        #textures {
+            position: relative;
+            background: var(--navy-light);
+            padding: 100px 24px 80px;
+        }
+        
+        #textures .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--off-white);
+            margin-bottom: 8px;
+        }
+        
+        #textures .section-subtitle {
+            text-align: center;
+            font-size: clamp(.88rem, 1.5vw, 1.1rem);
+            letter-spacing: .16em;
+            color: var(--cyan);
+            margin-bottom: 50px;
+        }
+        
+        .texture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .texture-card {
+            position: relative;
+            aspect-ratio: 1/1;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            transition: transform .35s ease, box-shadow .35s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .texture-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 50px rgba(100, 255, 218, .12);
+        }
+        
+        .texture-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease;
+        }
+        
+        .texture-card:hover img {
+            transform: scale(1.08)
+        }
+        
+        .texture-card .card-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 16px 16px;
+            background: linear-gradient(transparent, rgba(10, 25, 47, .88));
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            letter-spacing: .08em;
+            color: var(--off-white);
+        }
+        /* ─── FOOTER ─── */
+        
+        footer {
+            position: relative;
+            background: var(--navy);
+            border-top: 1px solid var(--glass-border);
+            padding: 50px 24px 30px;
+            text-align: center;
+        }
+        
+        footer img {
+            width: 48px;
+            margin-bottom: 14px;
+            opacity: .7
+        }
+        
+        footer .contact-line {
+            font-size: .88rem;
+            color: rgba(245, 245, 240, .55);
+            margin: 4px 0;
+        }
+        
+        footer .contact-line a {
+            color: var(--cyan);
+            text-decoration: none
+        }
+        
+        footer .contact-line a:hover {
+            text-decoration: underline
+        }
+        
+        footer .footer-links {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        footer .footer-links a {
+            color: rgba(245, 245, 240, .5);
+            text-decoration: none;
+            font-size: .82rem;
+            letter-spacing: .06em;
+            transition: color .2s;
+        }
+        
+        footer .footer-links a:hover {
+            color: var(--cyan)
+        }
+        
+        footer .copyright {
+            margin-top: 22px;
+            font-size: .78rem;
+            color: rgba(245, 245, 240, .3);
+            letter-spacing: .06em;
+        }
+        /* ─── FADE-IN UTILITY ─── */
+        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+        /* ─── RESPONSIVE ─── */
+        
+        @media(max-width:768px) {
+            header {
+                padding: 12px 18px
+            }
+            header .brand-title {
+                font-size: 1rem;
+                letter-spacing: .12em
+            }
+            .eco-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px
+            }
+            .texture-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px
+            }
+            .why-us-grid {
+                grid-template-columns: 1fr;
+                gap: 14px
+            }
+        }
+        
+        @media(max-width:480px) {
+            .texture-grid {
+                grid-template-columns: 1fr;
+                gap: 16px
+            }
+            .eco-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header id="site-header">
-  <img src="lc-cr.png" alt="LimeCoats logo" class="logo-icon" id="header-logo">
-  <span class="brand-title">LIMECOATS</span>
-  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
-    <span></span><span></span><span></span>
-  </div>
-</header>
+    <!-- HEADER -->
+    <header id="site-header">
+        <img src="lc-cr.png" alt="LimeCoats logo" class="logo-icon" id="header-logo">
+        <span class="brand-title">LIMECOATS</span>
+        <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
 
-<!-- SIDE DRAWER -->
-<div class="drawer-overlay" id="drawer-overlay"></div>
-<div class="side-drawer" id="side-drawer">
-  <nav>
-    <a href="#top">Home</a>
-    <a href="#textures">Textures</a>
-    <a href="#why-lime">Why Lime?</a>
-    <a href="about.html">About Us</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="policy.html">Policy</a>
-  </nav>
-</div>
-
-<!-- HERO SECTION -->
-<section id="hero">
-  <img src="lclogo.png" alt="LimeCoats Logo" class="hero-logo">
-  <h1 class="brand-name">LimeCoats</h1>
-  <p class="tagline">Luxury Lime Finishes</p>
-  <p class="description">We bring the timeless art of lime plastering into modern spaces. Our artisanal textures breathe life into your walls — naturally. Crafted from mineral-rich lime, each finish is a testament to centuries of tradition meeting contemporary design.</p>
-  <a href="#textures" class="hero-cta">Explore Our Textures ↓</a>
-</section>
-
-<!-- LAKEMON IMAGE -->
-<section id="lakemon-section">
-  <img src="lakemon.jpg" alt="LimeCoats Showcase" class="fade-up">
-</section>
-
-<!-- ABOUT US PREVIEW -->
-<section id="about-preview">
-  <h2 class="section-title fade-up">Who We Are</h2>
-  <p class="section-subtitle fade-up">Artisans of Natural Beauty</p>
-  <p class="about-text fade-up">LimeCoats is a collective of skilled artisans, architects, and eco-conscious designers dedicated to redefining interior surfaces. We believe walls should do more than stand — they should inspire. Our team brings decades of combined expertise in traditional lime plastering, blending old-world craftsmanship with modern aesthetics to deliver finishes that are as sustainable as they are stunning.</p>
-  <p class="about-text fade-up">From luxury residences and boutique hotels to commercial showrooms, we have transformed spaces across the country with textures that tell a story. Every surface we touch becomes a canvas of organic beauty.</p>
-  <a href="about.html" class="about-link fade-up">Learn More About Us →</a>
-</section>
-
-<!-- WHY LIME -->
-<section id="why-lime">
-  <h2 class="section-title fade-up">Why Lime?</h2>
-  <p class="section-subtitle fade-up">The Ecological Difference</p>
-  <p class="why-lime-text fade-up">Lime plaster has been used for thousands of years, from ancient Roman aqueducts to Renaissance frescoes. Unlike synthetic paints and coatings, lime is a living material — it absorbs carbon dioxide as it cures, actively reducing your carbon footprint. It is naturally antibacterial, breathable, and free of volatile organic compounds (VOCs), making it the healthiest choice for your home and the planet.</p>
-  <div class="eco-grid">
-    <div class="eco-card fade-up"><div class="icon">🌿</div><div class="label">Zero VOC</div></div>
-    <div class="eco-card fade-up"><div class="icon">✨</div><div class="label">Toxin-Free</div></div>
-    <div class="eco-card fade-up"><div class="icon">💨</div><div class="label">Breathable</div></div>
-    <div class="eco-card fade-up"><div class="icon">🌍</div><div class="label">Carbon-Absorbing</div></div>
-    <div class="eco-card fade-up"><div class="icon">⛰️</div><div class="label">Mineral-Based</div></div>
-    <div class="eco-card fade-up"><div class="icon">♻️</div><div class="label">Sustainable</div></div>
-    <div class="eco-card fade-up"><div class="icon">🧫</div><div class="label">Antibacterial</div></div>
-    <div class="eco-card fade-up"><div class="icon">🌱</div><div class="label">Organic</div></div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section id="why-us">
-  <h2 class="section-title fade-up">Why LimeCoats?</h2>
-  <p class="section-subtitle fade-up">What Sets Us Apart</p>
-  <p class="why-us-text fade-up">We are not just applicators — we are artists. Every project we undertake is treated with the care and precision of a master craftsman. Here is what makes LimeCoats the preferred choice for discerning clients.</p>
-  <div class="why-us-grid">
-    <div class="why-us-card fade-up">
-      <div class="card-icon">🎨</div>
-      <h3>Bespoke Artistry</h3>
-      <p>Each finish is hand-applied by trained artisans, ensuring no two walls are ever the same. Your space becomes a one-of-a-kind masterpiece.</p>
+    <!-- SIDE DRAWER -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="side-drawer" id="side-drawer">
+        <nav>
+            <a href="#top">Home</a>
+            <a href="#textures">Textures</a>
+            <a href="#why-lime">Why Lime?</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="policy.html">Policy</a>
+        </nav>
     </div>
-    <div class="why-us-card fade-up">
-      <div class="card-icon">🏗️</div>
-      <h3>End-to-End Service</h3>
-      <p>From consultation and colour selection to application and aftercare, we manage every step so you can sit back and watch your vision come to life.</p>
-    </div>
-    <div class="why-us-card fade-up">
-      <div class="card-icon">🌍</div>
-      <h3>Eco-First Philosophy</h3>
-      <p>Sustainability is not an afterthought — it is our foundation. We use only natural, mineral-based materials that are kind to the earth and safe for your family.</p>
-    </div>
-    <div class="why-us-card fade-up">
-      <div class="card-icon">⭐</div>
-      <h3>Premium Quality</h3>
-      <p>We source the finest European-grade lime and pigments, delivering finishes that are not only beautiful but built to last for decades.</p>
-    </div>
-  </div>
-</section>
 
-<!-- CATALOGUE -->
-<section id="catalogue">
-  <h2 class="section-title fade-up">Our Catalogue</h2>
-  <p class="section-subtitle fade-up">Explore our complete range</p>
-  <a href="Limecoats_2026.pdf" target="_blank" rel="noopener noreferrer" class="catalogue-link fade-up">📄 Download LimeCoats 2026 Catalogue</a>
-</section>
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <img src="lclogo.png" alt="LimeCoats Logo" class="hero-logo">
+        <h1 class="brand-name">LimeCoats</h1>
+        <p class="tagline">Luxury Lime Finishes</p>
+        <p class="description">We bring the timeless art of lime plastering into modern spaces. Our artisanal textures breathe life into your walls — naturally. Crafted from mineral-rich lime, each finish is a testament to centuries of tradition meeting contemporary design.</p>
+        <a href="#textures" class="hero-cta">Explore Our Textures ↓</a>
+    </section>
 
-<!-- TEXTURES -->
-<section id="textures">
-  <h2 class="section-title fade-up">Our Textures</h2>
-  <p class="section-subtitle fade-up">Artisanal Finishes for Every Vision</p>
-  <div class="texture-grid" id="texture-grid"></div>
-</section>
+    <!-- LAKEMON IMAGE -->
+    <section id="lakemon-section">
+        <img src="Limewash_cover.jpg" alt="LimeCoats Showcase" class="fade-up">
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <img src="lc-cr.png" alt="LimeCoats">
-  <p class="contact-line"><a href="mailto:connect@limecoats.com">connect@limecoats.com</a></p>
-  <p class="contact-line"><a href="tel:+918452048245">+91 84520 48245</a></p>
-  <div class="footer-links">
-    <a href="about.html">About Us</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="policy.html">Policy</a>
-  </div>
-  <p class="copyright">&copy; 2026 LimeCoats. All rights reserved.</p>
-</footer>
+    <!-- ABOUT US PREVIEW -->
+    <section id="about-preview">
+        <h2 class="section-title fade-up">Who We Are</h2>
+        <p class="section-subtitle fade-up">Artisans of Natural Beauty</p>
+        <p class="about-text fade-up">LimeCoats is a collective of skilled artisans, architects, and eco-conscious designers dedicated to redefining interior surfaces. We believe walls should do more than stand — they should inspire. Our team brings decades of combined expertise in
+            traditional lime plastering, blending old-world craftsmanship with modern aesthetics to deliver finishes that are as sustainable as they are stunning.</p>
+        <p class="about-text fade-up">From luxury residences and boutique hotels to commercial showrooms, we have transformed spaces across the country with textures that tell a story. Every surface we touch becomes a canvas of organic beauty.</p>
+        <a href="about.html" class="about-link fade-up">Learn More About Us →</a>
+    </section>
 
-<script>
-(function(){
-  "use strict";
+    <!-- WHY LIME -->
+    <section id="why-lime">
+        <h2 class="section-title fade-up">Why Lime?</h2>
+        <p class="section-subtitle fade-up">The Ecological Difference</p>
+        <p class="why-lime-text fade-up">Lime plaster has been used for thousands of years, from ancient Roman aqueducts to Renaissance frescoes. Unlike synthetic paints and coatings, lime is a living material — it absorbs carbon dioxide as it cures, actively reducing your carbon footprint.
+            It is naturally antibacterial, breathable, and free of volatile organic compounds (VOCs), making it the healthiest choice for your home and the planet.</p>
+        <div class="eco-grid">
+            <div class="eco-card fade-up">
+                <div class="icon">🌿</div>
+                <div class="label">Zero VOC</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">✨</div>
+                <div class="label">Toxin-Free</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">💨</div>
+                <div class="label">Breathable</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">🌍</div>
+                <div class="label">Carbon-Absorbing</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">⛰️</div>
+                <div class="label">Mineral-Based</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">♻️</div>
+                <div class="label">Sustainable</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">🧫</div>
+                <div class="label">Antibacterial</div>
+            </div>
+            <div class="eco-card fade-up">
+                <div class="icon">🌱</div>
+                <div class="label">Organic</div>
+            </div>
+        </div>
+    </section>
 
-  /* ── Texture data ── */
-  const textures = [
-    {name:"Colour Wash",   img:"all_textures/Colour%20Wash/colourwash%20(1).jpg",       slug:"colour-wash"},
-    {name:"Decorative Silk",img:"all_textures/Decorative%20Silk/decorative_silk%20(1).jpg",slug:"decorative-silk"},
-    {name:"Drag",           img:"all_textures/Drag/drag%20(1).jpg",                      slug:"drag"},
-    {name:"Flooring",       img:"all_textures/Flooring/flooring%20(1).jpg",               slug:"flooring"},
-    {name:"Metallic",       img:"all_textures/Metallic/metallic%20(1).jpg",               slug:"metallic"},
-    {name:"Pearl Silk",     img:"all_textures/Pearl%20Silk/pearl_silk%20(1).jpg",          slug:"pearl-silk"},
-    {name:"Pitted",         img:"all_textures/Pitted/pitted%20(1).jpg",                   slug:"pitted"},
-    {name:"Rough Concrete", img:"all_textures/Rough%20Concrete/rough_concrete%20(1).jpg",  slug:"rough-concrete"},
-    {name:"Rough Stone Finish",img:"all_textures/Rough%20Stone%20Finish/rough_stone_finish%20(1).jpg",slug:"rough-stone-finish"},
-    {name:"Smooth Concrete",img:"all_textures/Smooth%20Concrete/smooth_concrete%20(1).jpg",slug:"smooth-concrete"},
-    {name:"Smooth Stone Finish",img:"all_textures/Smooth%20Stone%20Finish/smooth_stone_finish%20(1).jpg",slug:"smooth-stone-finish"},
-    {name:"Stencil",        img:"all_textures/Stencil/stencil%20(1).jpg",                 slug:"stencil"},
-    {name:"Stucco",         img:"all_textures/Stucco/stucco%20(1).jpg",                   slug:"stucco"},
-    {name:"Stucco Smooth",  img:"all_textures/Stucco%20Smooth/stucco_smooth%20(1).jpg",   slug:"stucco-smooth"},
-    {name:"Terrazzo",       img:"all_textures/Terrazzo/terrazzo%20(1).jpg",                slug:"terrazzo"},
-    {name:"Traventine",     img:"all_textures/Traventine/traventine%20(1).jpg",            slug:"traventine"},
-    {name:"Veneers",        img:"all_textures/Veneers/veneers%20(1).jpg",                  slug:"veneers"},
-    {name:"Venetian",       img:"all_textures/Venetian/venetian%20(1).jpg",                slug:"venetian"}
-  ];
+    <!-- WHY US -->
+    <section id="why-us">
+        <h2 class="section-title fade-up">Why LimeCoats?</h2>
+        <p class="section-subtitle fade-up">What Sets Us Apart</p>
+        <p class="why-us-text fade-up">We are not just applicators — we are artists. Every project we undertake is treated with the care and precision of a master craftsman. Here is what makes LimeCoats the preferred choice for discerning clients.</p>
+        <div class="why-us-grid">
+            <div class="why-us-card fade-up">
+                <div class="card-icon">🎨</div>
+                <h3>Bespoke Artistry</h3>
+                <p>Each finish is hand-applied by trained artisans, ensuring no two walls are ever the same. Your space becomes a one-of-a-kind masterpiece.</p>
+            </div>
+            <div class="why-us-card fade-up">
+                <div class="card-icon">🏗️</div>
+                <h3>End-to-End Service</h3>
+                <p>From consultation and colour selection to application and aftercare, we manage every step so you can sit back and watch your vision come to life.</p>
+            </div>
+            <div class="why-us-card fade-up">
+                <div class="card-icon">🌍</div>
+                <h3>Eco-First Philosophy</h3>
+                <p>Sustainability is not an afterthought — it is our foundation. We use only natural, mineral-based materials that are kind to the earth and safe for your family.</p>
+            </div>
+            <div class="why-us-card fade-up">
+                <div class="card-icon">⭐</div>
+                <h3>Premium Quality</h3>
+                <p>We source the finest European-grade lime and pigments, delivering finishes that are not only beautiful but built to last for decades.</p>
+            </div>
+        </div>
+    </section>
 
-  /* ── Build texture grid ── */
-  const grid = document.getElementById("texture-grid");
-  textures.forEach(function(t){
-    const a = document.createElement("a");
-    a.className = "texture-card fade-up";
-    a.href = "textures/" + t.slug + ".html";
-    a.innerHTML = '<img src="' + t.img + '" alt="' + t.name + '" loading="lazy">' +
-                  '<div class="card-label">' + t.name + '</div>';
-    grid.appendChild(a);
-  });
+    <!-- CATALOGUE -->
+    <section id="catalogue">
+        <h2 class="section-title fade-up">Our Catalogue</h2>
+        <p class="section-subtitle fade-up">Explore our complete range</p>
+        <a href="Limecoats_2026.pdf" target="_blank" rel="noopener noreferrer" class="catalogue-link fade-up">📄 Download LimeCoats 2026 Catalogue</a>
+    </section>
 
-  /* ── Intersection observer for fade-up elements ── */
-  const fadeEls = document.querySelectorAll(".fade-up");
-  const observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add("visible");
-        observer.unobserve(e.target);
-      }
-    });
-  },{threshold:0.15});
-  fadeEls.forEach(function(el){ observer.observe(el); });
+    <!-- TEXTURES -->
+    <section id="textures">
+        <h2 class="section-title fade-up">Our Textures</h2>
+        <p class="section-subtitle fade-up">Artisanal Finishes for Every Vision</p>
+        <div class="texture-grid" id="texture-grid"></div>
+    </section>
 
-  /* ── Hamburger / drawer ── */
-  const hamburger = document.getElementById("hamburger");
-  const drawer = document.getElementById("side-drawer");
-  const overlay = document.getElementById("drawer-overlay");
+    <!-- FOOTER -->
+    <footer>
+        <img src="lc-cr.png" alt="LimeCoats">
+        <p class="contact-line"><a href="mailto:connect@limecoats.com">connect@limecoats.com</a></p>
+        <p class="contact-line"><a href="tel:+918452048245">+91 84520 48245</a></p>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="policy.html">Policy</a>
+        </div>
+        <p class="copyright">&copy; 2026 LimeCoats. All rights reserved.</p>
+    </footer>
 
-  function toggleDrawer(){
-    const open = drawer.classList.toggle("open");
-    overlay.classList.toggle("open", open);
-    hamburger.classList.toggle("active", open);
-  }
-  hamburger.addEventListener("click", toggleDrawer);
-  overlay.addEventListener("click", toggleDrawer);
-  drawer.querySelectorAll("a").forEach(function(a){
-    a.addEventListener("click", function(){
-      if(drawer.classList.contains("open")) toggleDrawer();
-    });
-  });
+    <script>
+        (function() {
+            "use strict";
 
-  /* ── Logo scroll rotation ── */
-  var logo = document.querySelector("header .logo-icon");
-  if(logo){
-    window.addEventListener("scroll", function(){
-      requestAnimationFrame(function(){
-        logo.style.transform = "rotate(" + (window.scrollY * 0.5) + "deg)";
-      });
-    });
-  }
+            /* ── Texture data ── */
+            const textures = [{
+                name: "Colour Wash",
+                img: "all_textures/Colour%20Wash/colourwash%20(1).jpg",
+                slug: "colour-wash"
+            }, {
+                name: "Decorative Silk",
+                img: "all_textures/Decorative%20Silk/decorative_silk%20(1).jpg",
+                slug: "decorative-silk"
+            }, {
+                name: "Drag",
+                img: "all_textures/Drag/drag%20(1).jpg",
+                slug: "drag"
+            }, {
+                name: "Flooring",
+                img: "all_textures/Flooring/flooring%20(1).jpg",
+                slug: "flooring"
+            }, {
+                name: "Metallic",
+                img: "all_textures/Metallic/metallic%20(1).jpg",
+                slug: "metallic"
+            }, {
+                name: "Pearl Silk",
+                img: "all_textures/Pearl%20Silk/pearl_silk%20(1).jpg",
+                slug: "pearl-silk"
+            }, {
+                name: "Pitted",
+                img: "all_textures/Pitted/pitted%20(1).jpg",
+                slug: "pitted"
+            }, {
+                name: "Rough Concrete",
+                img: "all_textures/Rough%20Concrete/rough_concrete%20(1).jpg",
+                slug: "rough-concrete"
+            }, {
+                name: "Rough Stone Finish",
+                img: "all_textures/Rough%20Stone%20Finish/rough_stone_finish%20(1).jpg",
+                slug: "rough-stone-finish"
+            }, {
+                name: "Smooth Concrete",
+                img: "all_textures/Smooth%20Concrete/smooth_concrete%20(1).jpg",
+                slug: "smooth-concrete"
+            }, {
+                name: "Smooth Stone Finish",
+                img: "all_textures/Smooth%20Stone%20Finish/smooth_stone_finish%20(1).jpg",
+                slug: "smooth-stone-finish"
+            }, {
+                name: "Stencil",
+                img: "all_textures/Stencil/stencil%20(1).jpg",
+                slug: "stencil"
+            }, {
+                name: "Stucco",
+                img: "all_textures/Stucco/stucco%20(1).jpg",
+                slug: "stucco"
+            }, {
+                name: "Stucco Smooth",
+                img: "all_textures/Stucco%20Smooth/stucco_smooth%20(1).jpg",
+                slug: "stucco-smooth"
+            }, {
+                name: "Terrazzo",
+                img: "all_textures/Terrazzo/terrazzo%20(1).jpg",
+                slug: "terrazzo"
+            }, {
+                name: "Traventine",
+                img: "all_textures/Traventine/traventine%20(1).jpg",
+                slug: "traventine"
+            }, {
+                name: "Veneers",
+                img: "all_textures/Veneers/veneers%20(1).jpg",
+                slug: "veneers"
+            }, {
+                name: "Venetian",
+                img: "all_textures/Venetian/venetian%20(1).jpg",
+                slug: "venetian"
+            }];
 
-})();
-</script>
+            /* ── Build texture grid ── */
+            const grid = document.getElementById("texture-grid");
+            textures.forEach(function(t) {
+                const a = document.createElement("a");
+                a.className = "texture-card fade-up";
+                a.href = "textures/" + t.slug + ".html";
+                a.innerHTML = '<img src="' + t.img + '" alt="' + t.name + '" loading="lazy">' +
+                    '<div class="card-label">' + t.name + '</div>';
+                grid.appendChild(a);
+            });
+
+            /* ── Intersection observer for fade-up elements ── */
+            const fadeEls = document.querySelectorAll(".fade-up");
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add("visible");
+                        observer.unobserve(e.target);
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+            fadeEls.forEach(function(el) {
+                observer.observe(el);
+            });
+
+            /* ── Hamburger / drawer ── */
+            const hamburger = document.getElementById("hamburger");
+            const drawer = document.getElementById("side-drawer");
+            const overlay = document.getElementById("drawer-overlay");
+
+            function toggleDrawer() {
+                const open = drawer.classList.toggle("open");
+                overlay.classList.toggle("open", open);
+                hamburger.classList.toggle("active", open);
+            }
+            hamburger.addEventListener("click", toggleDrawer);
+            overlay.addEventListener("click", toggleDrawer);
+            drawer.querySelectorAll("a").forEach(function(a) {
+                a.addEventListener("click", function() {
+                    if (drawer.classList.contains("open")) toggleDrawer();
+                });
+            });
+
+            /* ── Logo scroll rotation ── */
+            var logo = document.querySelector("header .logo-icon");
+            if (logo) {
+                window.addEventListener("scroll", function() {
+                    requestAnimationFrame(function() {
+                        logo.style.transform = "rotate(" + (window.scrollY * 0.5) + "deg)";
+                    });
+                });
+            }
+
+        })();
+    </script>
 </body>
+
 </html>
