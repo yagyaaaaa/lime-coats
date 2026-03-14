@@ -178,5 +178,15 @@ footer .copyright{
   <p class="copyright">&copy; 2026 LimeCoats. All rights reserved.</p>
 </footer>
 
+<script>
+(function(){
+  var logo = document.querySelector("header .logo-icon");
+  if(logo){
+    window.addEventListener("scroll", function(){
+      logo.style.transform = "rotate(" + (window.pageYOffset * 0.5) + "deg)";
+    });
+  }
+})();
+</script>
 </body>
 </html>
