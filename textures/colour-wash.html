@@ -200,6 +200,17 @@ footer .copyright{
       }, 200);
     });
   });
+
+  /* ── Logo scroll rotation ── */
+  var logo = document.querySelector("header .logo-icon");
+  if(logo){
+    window.addEventListener("scroll", function(){
+      requestAnimationFrame(function(){
+        logo.style.transform = "rotate(" + (window.scrollY * 0.5) + "deg)";
+      });
+    });
+  }
+
 })();
 </script>
 </body>
