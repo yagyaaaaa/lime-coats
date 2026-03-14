@@ -192,7 +192,7 @@ footer .copyright{
 
   /* Set button background thumbnails */
   buttons.forEach(function(btn, i){
-    btn.style.backgroundImage = "url(" + images[i] + ")";
+    btn.style.backgroundImage = "url('" + images[i] + "')";
     btn.addEventListener("click", function(){
       /* Update active */
       buttons.forEach(function(b){ b.classList.remove("active"); });
